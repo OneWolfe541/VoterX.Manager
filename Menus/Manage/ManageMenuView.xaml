@@ -1,0 +1,56 @@
+﻿<Page x:Class="VoterX.Manager.Menus.ManageMenuView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Manager.Menus"
+      xmlns:convert="clr-namespace:VoterX.Utilities.Converters;assembly=VoterX.Utilities"
+      mc:Ignorable="d"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <convert:BooleanToVisibilityConverter x:Key="convVis" />
+    </Page.Resources>
+
+    <Grid Name="MenuGrid" Margin="0,10,0,3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Name="HomeRegion" Grid.Row="0" Orientation="Vertical"
+                    Visibility="{Binding Path=HomePanelVisibility, Converter={StaticResource convVis}, FallbackValue=Visible}">
+            <ItemsControl ItemsSource="{Binding HomeCustomControls}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </StackPanel>
+
+        <StackPanel Name="CenterRegion" Grid.Row="1" Orientation="Vertical"
+                    Visibility="{Binding Path=CenterPanelVisibility, Converter={StaticResource convVis}, FallbackValue=Visible}">
+            <ItemsControl ItemsSource="{Binding CenterCustomControls}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </StackPanel>
+
+        <StackPanel Name="ExitRegion" Grid.Row="2" Orientation="Vertical"
+                    Visibility="{Binding Path=ExitPanelVisibility, Converter={StaticResource convVis}, FallbackValue=Visible}">
+            <ItemsControl ItemsSource="{Binding ExitCustomControls}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </StackPanel>
+        
+    </Grid>
+</Page>

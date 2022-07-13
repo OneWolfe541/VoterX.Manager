@@ -1,0 +1,121 @@
+﻿<Page x:Class="VoterX.AbsenteeMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      FontSize="18" >
+
+    <Grid>
+        <StackPanel Grid.Row="0" Orientation="Vertical" >
+            <Button Name="SystemSettings" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="SystemSettings_Click" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_gear" Icon="Gear" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="SYSTEM SETTINGS" />
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Row="0" Name="MainMenuHomeButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="MainMenuHomeButton_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_home" Icon="Home" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,1,10,0" />
+                    <TextBlock Text="ABSENTEE HOME" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="VoterLookupMenu" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="VoterLookupMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_user" Icon="User" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="VOTER LOOKUP" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="SERVISLookupMenu" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="SERVISLookupMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_users" Icon="Users" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="SERVIS LOOKUP" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="ScanReturnsMenu" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ScanReturnsMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_barcode" Icon="Barcode" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="SCAN RETURNS" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="BatchPrintingMenu" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="BatchPrintingMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_clone" Icon="Clone" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="BATCH PRINTING" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="SERVISBatchMenu" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="SERVISBatchMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_copy" Icon="Copy"  Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="SERVIS BATCH" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="BatchMenu" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="BatchMenu_Click" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_list" Icon="ListOl" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="BATCH HISTORY" />
+                </StackPanel>
+            </Button>
+
+            <!--<Button Name="AddVoterMenu" Height="36" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="AddVoterMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_userplus" Icon="UserPlus" Foreground="{DynamicResource ApplicationForegroundColor}" Height="20" Width="20" Margin="0,0,10,0" />
+                    <TextBlock Text="ADD PROVISIONAL VOTER" FontSize="16" />
+                </StackPanel>
+            </Button>-->
+
+            <Button Name="ReportsMenu" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ReportsMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_barchart" Icon="BarChart" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="REPORTS" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="ReportWizardMenu" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ReportWizardMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_magic" Icon="Magic" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="REPORT WIZARD" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="AvRegisterMenu" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="AvRegisterMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_book" Icon="Book" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="AV REGISTER" />
+                </StackPanel>
+            </Button>
+
+            <!--<Button Name="TestDeckMenu" Height="36" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="TestDeckMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_clipboard" Icon="Clipboard" Foreground="{DynamicResource ApplicationForegroundColor}" Height="20" Width="20" Margin="0,0,10,0" />
+                    <TextBlock Text="TEST DECK" FontSize="16" />
+                </StackPanel>
+            </Button>-->
+
+            <!--<Border BorderBrush="{DynamicResource ApplicationForegroundColor}" BorderThickness="2,2,2,2" Height="2" HorizontalAlignment="Stretch" Margin="0,10,0,5" Visibility="Hidden" />-->
+
+            <!--<Button Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ClosePolls_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="Download" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,0,10,0" />
+                    <TextBlock Text="CLOSE POLLS" FontSize="16" />
+                </StackPanel>
+            </Button>-->
+
+            <!--<Button Name="TestMenu" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="TestMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_chain" Icon="ChainBroken" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,0,10,0" />
+                    <TextBlock Text="TEST" FontSize="18" />
+                </StackPanel>
+            </Button>-->
+        </StackPanel>
+    </Grid>
+</Page>

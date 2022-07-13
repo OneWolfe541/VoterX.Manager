@@ -1,0 +1,216 @@
+﻿<Page x:Class="VoterX.ValidationPageCard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:convert="clr-namespace:VoterX.Converters"
+      mc:Ignorable="d" 
+      FontSize="20" >
+
+    <Page.Resources>
+        <convert:TextColorConverter x:Key="conv" />        
+    </Page.Resources>
+
+    <Grid Name="PageGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" /><!-- SPACER -->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <Button Name="BackButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" Width="200" Click="BackButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+            <StackPanel Orientation="Horizontal">
+                <fa:ImageAwesome Name="fa_eraser" Icon="ArrowLeft" Foreground="White" Height="19" Width="19" Margin="0,1,10,0" />
+                <!--<TextBlock Text="&lt;" FontSize="24" Margin="0,-7,6,0" />-->
+                <TextBlock Text="BACK TO SEARCH" FontSize="18" />
+            </StackPanel>
+        </Button>
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <Grid Name="VoterDetailGrid" Grid.Row="1" Grid.Column="1" Margin="20,15,32,0" HorizontalAlignment="Center" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Name="AlreadyVoted" Grid.Row="0" Grid.Column="0" Orientation="Vertical" Visibility="Collapsed" >
+                <TextBlock Text="THIS VOTER HAS ALREADY BEEN ASSIGNED A BALLOT" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <TextBlock Text="Previously voted at" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" />
+                    <TextBlock Name="PreviousSite" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Margin="5,0,0,0" />                    
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <TextBlock Text="Date/Time" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" />
+                    <TextBlock Name="PreviousDate" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Margin="5,0,0,0" />
+                    <TextBlock Text="Machine Number" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Margin="10,0,0,0" />
+                    <TextBlock Name="PreviousComputer" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Margin="5,0,0,0" />
+                </StackPanel>
+                <TextBlock Text="Please check the Voters information again." FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" />
+            </StackPanel>
+
+            <Border Name="VoterVerificationBorder" Grid.Row="1" Grid.RowSpan="6" Background="White" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="6" >
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" />
+                </Border.Effect>
+            </Border>
+
+            <TextBlock Name="VoterVerificationText" Grid.Row="1" Grid.Column="0" Text="Voter Verification" FontSize="28" FontWeight="Bold" Margin="10,5,0,5" VerticalAlignment="Center" />
+
+            <Grid Name="IDVarification" Grid.Row="2" Grid.Column="0" Margin="0,0,0,5" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <BulletDecorator Grid.Row="1" Margin="12,0,0,0">
+                    <BulletDecorator.Bullet>
+                        <TextBlock Text="" Foreground="Blue" />
+                    </BulletDecorator.Bullet>
+                    <TextBlock Text="Ask the Voter for their ID" Foreground="Blue" />
+                </BulletDecorator>
+                <!--<TextBlock Grid.Row="1" Text="Ask the Voter for their ID" Margin="12,0,0,0" Foreground="Blue" />-->
+                <CheckBox Grid.Row="2" Name="IDCorrect" HorizontalAlignment="Left" Margin="12,0,0,0" Style="{DynamicResource CheckBoxStyleLarge20}" Click="Validation_Click">
+                    <TextBlock Text="Voter ID is Valid?" Margin="0,0,0,0"/>
+                </CheckBox>
+                <Border Grid.Row="3" Grid.Column="0" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="10,3,20,2" />
+            </Grid>
+
+            <!-- Name -->
+            <Grid Name="CheckNameGrid" Grid.Row="3" Grid.Column="0" Margin="0,0,0,5" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <BulletDecorator Grid.Row="0" Margin="12,0,0,0">
+                    <BulletDecorator.Bullet>
+                        <TextBlock Text="" Foreground="Blue" />
+                    </BulletDecorator.Bullet>
+                    <TextBlock Text="Ask the Voter if this is their Full Name" Foreground="Blue" />
+                </BulletDecorator>
+                <TextBlock Grid.Row="1" Name="FullName" FontWeight="DemiBold" FontSize="24" Margin="20,0,0,0"/>
+                <CheckBox Grid.Row="2" Name="NameCorrect" HorizontalAlignment="Left" Margin="12,0,0,0" Style="{DynamicResource CheckBoxStyleLarge20}" Click="Validation_Click">
+                    <TextBlock Text="Voter Name is Correct?" Margin="0,0,0,0"/>
+                </CheckBox>
+            </Grid>
+
+            <!-- Birth Year -->
+            <Grid Name="CheckDateGrid" Grid.Row="4" Grid.Column="0" Margin="0,0,0,5" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="10,3,20,2" />
+                <BulletDecorator Grid.Row="1" Margin="12,0,0,0">
+                    <BulletDecorator.Bullet>
+                        <TextBlock Text="" Foreground="Blue" />
+                    </BulletDecorator.Bullet>
+                    <TextBlock Text="Ask the Voter if this is their Birth Year" Foreground="Blue" />
+                </BulletDecorator>
+                <TextBlock Grid.Row="2" Name="BirthYear" FontWeight="DemiBold" FontSize="24" Margin="20,0,0,0"/>
+                <CheckBox Grid.Row="3" Name="DateCorrect" HorizontalAlignment="Left" Margin="12,0,0,0" Style="{DynamicResource CheckBoxStyleLarge20}" Click="Validation_Click">
+                    <TextBlock Text="Voter Birth Year is Correct?" Margin="0,0,0,0"/>
+                </CheckBox>
+            </Grid>
+
+            <!-- Address -->
+            <Grid Name="CheckAddressGrid" Grid.Row="5" Grid.Column="0" Margin="0,0,0,5" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="10,3,20,2" />
+                <BulletDecorator Grid.Row="1" Margin="12,0,20,0">
+                    <BulletDecorator.Bullet>
+                        <TextBlock Text="" Foreground="Blue" />
+                    </BulletDecorator.Bullet>
+                    <TextBlock Text="Ask the Voter if this is their Registered Address" Foreground="Blue" />
+                </BulletDecorator>
+                <!--<TextBlock Grid.Row="1" Text="Ask the Voter for their Current Address" Margin="12,0,0,0" Foreground="Blue" />-->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="20,0,0,0">
+                    <TextBlock Name="Address" FontWeight="DemiBold" FontSize="24" />
+                    <TextBlock Name="CityStateAndZip" FontWeight="DemiBold" FontSize="24" Margin="5,0,30,0" />
+                </StackPanel>
+                <CheckBox Grid.Row="3" Name="AddressCorrect" HorizontalAlignment="Left" Margin="12,0,0,0" Style="{DynamicResource CheckBoxStyleLarge20}" Click="Validation_Click">
+                    <TextBlock Text="Voter Address is Correct?" Margin="0,0,0,0"/>
+                </CheckBox>
+            </Grid>
+
+            <Grid Name="SpoiledVarification" Grid.Row="6" Grid.Column="0" Margin="0,0,0,5" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="10,3,20,2" />
+                <BulletDecorator Grid.Row="1" Margin="12,0,0,0">
+                    <BulletDecorator.Bullet>
+                        <TextBlock Text="" Foreground="Blue" />
+                    </BulletDecorator.Bullet>
+                    <TextBlock Text="Has the Voter surrendered their exisiting ballot" Foreground="Blue" />
+                </BulletDecorator>
+                <!--<TextBlock Grid.Row="1" Text="Ask the Voter for their ID" Margin="12,0,0,0" Foreground="Blue" />-->
+                <CheckBox Grid.Row="2" Name="SurrenderYes" HorizontalAlignment="Left" Margin="12,0,0,0" Style="{DynamicResource CheckBoxStyleLarge20}" Click="Surrender_Click">
+                    <TextBlock Text="Yes" Margin="0,0,0,0"/>
+                </CheckBox>
+                <CheckBox Grid.Row="3" Name="SurrenderNo" HorizontalAlignment="Left" Margin="12,0,0,0" Style="{DynamicResource CheckBoxStyleLarge20}" Click="Surrender_Click">
+                    <TextBlock Text="No" Margin="0,0,0,0"/>
+                </CheckBox>
+            </Grid>
+
+            <TextBlock Grid.Row="6" Grid.Column="0" Name="EmptySpacer" Margin="0" Height="5" />
+
+            <StackPanel Name="SpoiledReasonPanel" Grid.Row="7" Orientation="Horizontal" Margin="20,20,20,0" Visibility="Collapsed">
+                <TextBlock Text="Select a Spoiled Reason" />
+                <ComboBox Name="SpoledReason" DisplayMemberPath="spoiled_reason" SelectedValuePath="spoiled_reason_id" Width="290" Margin="5,0,0,0" SelectionChanged="SpoledReason_SelectionChanged" Style="{DynamicResource ComboBoxFlatStyle}" />
+            </StackPanel>
+
+            <Button Name="StartProvisionalButton" Content="Start Provisional Process" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="StartProvisionalButton_Click" Width="400" Padding="5" Visibility="Collapsed" Margin="0,10,0,0" Style="{DynamicResource ModernButtonStyle}" />
+
+        </Grid>
+
+        <!-- COLUMN THREE ########################################################################## -->
+
+        <StackPanel Name="BallotFunctions" Grid.Row="1" Grid.Column="2" Orientation="Vertical" Visibility="Collapsed" VerticalAlignment="Stretch" Margin="0,15,15,0" >
+            <Button Name="OfficialBallot" Content="PRINT OFFICIAL BALLOT" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Click="OfficialButton_Click" Padding="5" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" />
+            <Button Name="Signature" Content="CAPTURE SIGNATURE" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Signature_Click" Width="200" Padding="5" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" />
+
+            <Button Name="SpoilBallot" Content="SPOIL A BALLOT" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Click="SpoilButton_Click" Padding="5" Width="200" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" />
+            <Button Name="SpoilFledBallot" Content="SPOIL FLED VOTER" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Click="SpoilFledButton_Click" Padding="5" Width="200" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" />
+            <Button Name="SpoilWrongBallot" Content="SPOIL WRONG VOTER" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Click="SpoilWrongButton_Click" Padding="5" Width="200" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" />
+
+            <Button Name="ProvisionalBallot" Content="PRINT PROVISIONAL BALLOT" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="ProvisionalButton_Click" Height="100" Padding="5" Margin="0,430,0,10" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" />
+        </StackPanel>
+
+    </Grid>
+</Page>

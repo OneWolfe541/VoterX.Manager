@@ -1,0 +1,51 @@
+﻿<Page x:Class="VoterX.AllMailMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      FontSize="18" >
+
+    <Grid>
+        <StackPanel Grid.Row="0" Orientation="Vertical" >
+
+            <Button Grid.Row="0" Name="MainMenuHomeButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="MainMenuHomeButton_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_home" Icon="Home" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,1,10,0" />
+                    <TextBlock Text="ABSENTEE HOME" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="VoterLookupMenu" Height="42" Margin="0,25,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="VoterLookupMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_user" Icon="User" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="VOTER LOOKUP" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="ScanReturnsMenu" Height="42" Margin="0,25,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ScanReturnsMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_barcode" Icon="Barcode" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="SCAN RETURNS" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="ReportsMenu" Height="42" Margin="0,25,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ReportsMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_barchart" Icon="BarChart" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="REPORTS" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="ReportWizardMenu" Height="42" Margin="0,25,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ReportWizardMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_magic" Icon="Magic" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="REPORT WIZARD" />
+                </StackPanel>
+            </Button>
+            
+        </StackPanel>
+    </Grid>
+</Page>

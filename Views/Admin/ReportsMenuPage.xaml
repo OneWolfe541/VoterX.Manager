@@ -1,0 +1,95 @@
+﻿<Page x:Class="VoterX.ReportsMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      FontSize="14">
+
+    <Grid Name="PageGrid" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <Button Name="BackButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,15,0,0" Height="42" Width="250" Click="BackButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                <fa:ImageAwesome Name="fa_arrowleft" Icon="ArrowLeft" Foreground="{DynamicResource ApplicationForegroundColor}" Height="19" Width="19" Margin="0,1,10,0" />
+                <TextBlock Text="BACK TO MENU" FontSize="18" />
+            </StackPanel>
+        </Button>
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <Grid Grid.Row="1" Grid.Column="1" Name="ReportButtonGrid" Margin="10,60,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Name="ZeroReportButton" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="42" Width="250" Click="ZeroReportButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                    <fa:ImageAwesome Name="fa_fighterjet" Icon="FighterJet" Foreground="{DynamicResource ApplicationForegroundColor}" Height="19" Width="19" Margin="0,1,10,0" />
+                    <TextBlock Text="ZERO REPORT" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="DailyDetailReportButton" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="42" Width="250" Click="DailyDetailReportButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                    <fa:ImageAwesome Name="fa_calendar" Icon="Calendar" Foreground="{DynamicResource ApplicationForegroundColor}" Height="19" Width="19" Margin="0,1,10,0" />
+                    <TextBlock Text="DAILY DETAILS BY COMP" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="DailyDetailReportBSButton" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="42" Width="250" Click="DailyDetailReportBSButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                    <fa:ImageAwesome Name="fa_calendar2" Icon="Calendar" Foreground="{DynamicResource ApplicationForegroundColor}" Height="19" Width="19" Margin="0,1,10,0" />
+                    <TextBlock Text="DAILY DETAILS BY SITE" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="DailyProvisionalButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="42" Width="250" Click="DailyProvisionalButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                    <fa:ImageAwesome Name="fa_bicycle" Icon="Bicycle" Foreground="{DynamicResource ApplicationForegroundColor}" Height="19" Width="19" Margin="0,1,10,0" />
+                    <TextBlock Text="DAILY PROVISIONAL" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="DailySpoiledButton" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="42" Width="250" Click="DailySpoiledButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                    <fa:ImageAwesome Name="fa_binoculars" Icon="Binoculars" Foreground="{DynamicResource ApplicationForegroundColor}" Height="19" Width="19" Margin="0,1,10,0" />
+                    <TextBlock Text="DAILY SPOILED" FontSize="18" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <!-- COLUMN THREE ########################################################################## -->
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,10,15,0">
+            <Button Name="LogoutButton" HorizontalAlignment="Center" VerticalAlignment="Top" Click="LogoutButton_Click" Width="250" Height="42" FontSize="18" Visibility="Visible" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_signout" Icon="SignOut" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="LOG OUT" FontSize="18" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        
+    </Grid>
+</Page>

@@ -1,0 +1,40 @@
+﻿<Window x:Class="VoterX.MainAbsenteeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VoterX"
+        xmlns:uc="clr-namespace:VoterX.Utilities.Controls;assembly=VoterX.Utilities"
+        xmlns:uv="clr-namespace:VoterX.Utilities.Views;assembly=VoterX.Utilities"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Title="VoterX Absentee"        
+        Height="740" Width="1366"
+        MinHeight="740" MinWidth="1366"
+        WindowStyle="None" ResizeMode="CanResizeWithGrip" AllowsTransparency="True"
+        KeyDown="Window_KeyDown"
+        Icon="C:\Program Files\VoterX\Images\AES.ico"
+        Unloaded="Window_Unloaded">
+    <!-- https://fontawesome.com/icons?d=gallery&m=free -->
+
+    <Grid Name="WindowGrid" Background="{DynamicResource ApplicationBackgroundColor}" MouseDown="MaximizeMyWindow" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="35" />
+        </Grid.RowDefinitions>
+
+        <!-- MAIN CONTENT -->
+        <Frame Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated" />
+
+        <!-- SLIDING MENU (Appears Above Main Content)-->
+        <uc:SliderMenuFrameControl Name="DynamicMenuSlider" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,-4,0,0" CollapseMode="None" Visibility="Visible" />
+
+        <!-- Status Bar (Appears Above Content And Slider Menu)-->
+        <uv:StatusBarControl x:Name="StatusBarUserControl" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="99" />
+        
+        <!-- HEADER BAR AND SHADOW (Placed Last So It Appears Above Everything)-->
+        <uv:MainHeaderControl x:Name="MainHeaderControl" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
+
+    </Grid>
+</Window>

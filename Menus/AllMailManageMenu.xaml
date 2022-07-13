@@ -1,0 +1,39 @@
+﻿<Page x:Class="VoterX.AllMailManageMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      FontSize="18" >
+
+    <Grid>
+        <StackPanel Grid.Row="0" Orientation="Vertical" >
+
+            <Button Name="MainMenuHomeButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="MainMenuHomeButton_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_home" Icon="Home" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,1,10,0" />
+                    <TextBlock Text="MANAGE HOME" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="EmergencyBallotMenu" Height="42" Margin="0,55,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="EmergencyBallotMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_clipboard" Icon="Clipboard" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="EMERGENCY BALLOTS" />
+                </StackPanel>
+            </Button>
+
+            <Border BorderBrush="{DynamicResource ApplicationForegroundColor}" BorderThickness="2,2,2,2" Height="2" HorizontalAlignment="Stretch" Margin="0,5,0,5" Visibility="Hidden" />
+
+            <Button Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ManualRecordUpdate_Click" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="Wrench" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="MANUAL RECORD UPDATE" />
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+    </Grid>
+</Page>

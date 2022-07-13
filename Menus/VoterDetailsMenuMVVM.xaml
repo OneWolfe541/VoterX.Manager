@@ -1,0 +1,93 @@
+﻿<Page x:Class="VoterX.VoterDetailsMenuMVVM"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      FontSize="18" >
+
+    <Grid>
+        <StackPanel Grid.Row="0" Orientation="Vertical" >
+            <Button Name="BackButton" Height="42" Margin="0,10,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="BackButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="BACK TO SEARCH">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_arrowleft" Icon="ArrowLeft" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="BACK TO SEARCH" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>                 
+
+            <Border BorderBrush="{DynamicResource ApplicationForegroundColor}" BorderThickness="2,2,2,2" Height="2" HorizontalAlignment="Stretch" Margin="0,15,0,0" Visibility="Hidden" />
+
+            <Button Name="PrintApplicationButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="PrintApplicationButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="PRINT APPLICATION">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_print" Icon="Print" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="PRINT APPLICATION" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="PrintMailingBallotButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="PrintMailingBallotButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="PRINT MAIL-IN BALLOT">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_envelope" Icon="EnvelopeOutlinepenOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="PRINT MAIL-IN BALLOT" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="PrintAddressLabelButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="PrintAddressLabelButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="PRINT ADDRESS LABEL">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_addresscard" Icon="AddressCardOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="PRINT ADDRESS LABEL" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="BatchVoterButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="BatchVoterButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="QUEUE FOR BATCH">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_list" Icon="ListOl" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="QUEUE FOR BATCH" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>
+
+            <Border BorderBrush="{DynamicResource ApplicationForegroundColor}" BorderThickness="2,2,2,2" Height="2" HorizontalAlignment="Stretch" Margin="0,15,0,0" Visibility="Hidden" />
+
+            <Button Name="SpoilBallotButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="SpoilBallotButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="SPOIL A BALLOT">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#x1F503;" FontSize="32" Margin="-2,-4,8,0" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                    <TextBlock Text="SPOIL A BALLOT" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="RejectedApplicationButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="RejectedApplicationButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="REJECT APPLICATION">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_ban" Icon="Ban" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="REJECT APPLICATION" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="PrintProvisionalBallotButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="PrinProvisionalBallotButton_Click" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible"
+                    ToolTip="PRINT PROVISIONAL BALLOT">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_check" Icon="CheckSquareOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="PRINT PROVISIONAL BALLOT" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>
+            
+            <Border BorderBrush="{DynamicResource ApplicationForegroundColor}" BorderThickness="2,2,2,2" Height="2" HorizontalAlignment="Stretch" Margin="0,15,0,0" Visibility="Hidden" />            
+
+            <Button Name="EarlyVotingBallotButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="EarlyVotingBallotButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="PRINT EARLY VOTING BALLOT">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_clock" Icon="ClockOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="PRINT EARLY VOTING BALLOT" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>
+            
+        </StackPanel>
+    </Grid>
+</Page>

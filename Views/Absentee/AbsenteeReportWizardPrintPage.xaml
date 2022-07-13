@@ -1,0 +1,149 @@
+﻿<Page x:Class="VoterX.AbsenteeReportWizardPrintPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      FontSize="20">
+
+    <Grid Name="PageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" Margin="0,45,0,0" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="REPORT NAME" FontWeight="Bold" Margin="0,0,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBox Name="ReportName" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" Width="600" HorizontalContentAlignment="Left" Style="{DynamicResource ModernTextboxStyleWithBorder}" KeyUp="ReportName_KeyUp" />
+
+            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                <Button Name="ExcelExportButton" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" Height="42" Width="300" Click="ExcelExportButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed" >
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Name="fa_truck" Icon="Truck" Foreground="White" Height="20" Width="20" Margin="0,1,10,0" />
+                        <TextBlock Text="CREATE EXCEL FILE" />
+                    </StackPanel>
+                </Button>
+                <Button Name="CSVExportButton" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" Height="42" Width="300" Click="CSVExportButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Name="csv_fa_truck" Icon="Truck" Foreground="White" Height="20" Width="20" Margin="0,1,10,0" />
+                        <TextBlock Text="CREATE CSV FILE" />
+                    </StackPanel>
+                </Button>
+                <Button Name="ExcelExportBrowseButton" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" Height="42" Width="30" Click="ExcelExportBrowseButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" ToolTip="OPEN THE LAST REPORT LOCATION" Visibility="Collapsed" >
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Name="fa_folder" Icon="FolderOpen" Foreground="White" Height="20" Width="20" Margin="0,1,10,0" />
+                        <TextBlock Text="BROWSE" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <Button Name="SummaryReportButton" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" Height="42" Width="300" Click="SummaryReportButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_table" Icon="Table" Foreground="White" Height="20" Width="20" Margin="0,1,10,0" />
+                    <TextBlock Text="PRINT SUMMARY REPORT" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="DetailReportButton" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" Height="42" Width="300" Click="DetailReportButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_copy" Icon="Copy" Foreground="White" Height="20" Width="20" Margin="0,1,10,0" />
+                    <TextBlock Text="PRINT DETAIL REPORT" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="LabelReportButton" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" Height="42" Width="300" Click="LabelReportButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_idcard" Icon="IdCardOutline" Foreground="White" Height="20" Width="20" Margin="0,1,10,0" />
+                    <TextBlock Text="PRINT LABEL REPORT" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="SummaryPreviewButton" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" Height="42" Width="300" Click="SummaryPreviewButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_tables" Icon="Table" Foreground="White" Height="20" Width="20" Margin="0,1,10,0" />
+                    <TextBlock Text="PREVIEW SUMMARY REPORT" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="DetailPreviewButton" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" Height="42" Width="300" Click="DetailPreviewButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_copy2" Icon="Copy" Foreground="White" Height="20" Width="20" Margin="0,1,10,0" />
+                    <TextBlock Text="PREVIEW DETAIL REPORT" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="PreviousWizardButton" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,35,0,5" Height="42" Width="150" Click="PreviousWizardButton_Click" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <fa:ImageAwesome Name="bk_fa_arrow" Icon="ArrowLeft" Foreground="White" Height="20" Width="20" Margin="0,1,10,0" />
+                    <TextBlock Text="BACK" />
+                </StackPanel>
+            </Button>
+
+            <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="10" Margin="45,12,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="REPORT SORTING" FontWeight="Bold" Margin="0,0,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                
+                <TextBlock Text="SORT BY FIRST" Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Center" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>
+                <ComboBox Name="SortTypeFirst" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="42" Margin="5,10,0,0" Padding="5" SelectionChanged="SortTypeFirst_SelectionChanged" Style="{DynamicResource ComboBoxFlatStyle}" >
+                    <ComboBoxItem DataContext="0" IsSelected="True" >None</ComboBoxItem>
+                    <ComboBoxItem Name="Name1" DataContext="1">Last then First</ComboBoxItem>
+                    <ComboBoxItem Name="Status1" DataContext="2">Status Code</ComboBoxItem>
+                    <!--<ComboBoxItem Name="Party1" DataContext="3">Party Affiliation</ComboBoxItem>-->
+                    <ComboBoxItem Name="BallotStyle1" DataContext="4">Ballot Style</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock Text="SORT BY SECOND" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Center" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>
+                <ComboBox Name="SortTypeSecond" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="42" Margin="5,10,0,0" Padding="5" SelectionChanged="SortTypeSecond_SelectionChanged" Style="{DynamicResource ComboBoxFlatStyle}" >
+                    <ComboBoxItem DataContext="0" IsSelected="True" >None</ComboBoxItem>
+                    <ComboBoxItem Name="Name2" DataContext="1">Last then First</ComboBoxItem>
+                    <ComboBoxItem Name="Status2" DataContext="2">Status Code</ComboBoxItem>
+                    <!--<ComboBoxItem Name="Party2" DataContext="3">Party Affiliation</ComboBoxItem>-->
+                    <ComboBoxItem Name="BallotStyle2" DataContext="4">Ballot Style</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="REPORT GROUPING" FontWeight="Bold" Margin="0,35,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                
+                <TextBlock Text="GROUP BY" Grid.Row="4" Grid.Column="0" Margin="0,10,0,0" VerticalAlignment="Center" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>
+                <ComboBox Name="GroupType" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="42" Margin="5,10,0,0" Padding="5" SelectionChanged="GroupType_SelectionChanged" Style="{DynamicResource ComboBoxFlatStyle}" >
+                    <ComboBoxItem DataContext="0" IsSelected="True" >None</ComboBoxItem>
+                    <ComboBoxItem Name="NameG" DataContext="1">Last Initial</ComboBoxItem>
+                    <ComboBoxItem Name="StatusG" DataContext="2">Status Code</ComboBoxItem>
+                    <ComboBoxItem Name="PartyG" DataContext="3">Party Affiliation</ComboBoxItem>
+                    <ComboBoxItem Name="BallotStyleG" DataContext="4">Ballot Style</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Page>

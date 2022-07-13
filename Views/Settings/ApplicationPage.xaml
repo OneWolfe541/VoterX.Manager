@@ -1,0 +1,94 @@
+﻿<local:SettingsBasePage x:Class="VoterX.ApplicationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      FontSize="18">
+
+    <Grid Name="SystemGrid" Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Place holder box for displaying Animated Loading message for async lists -->
+        <!--<ComboBox Name="TempLoadingSpinner" Grid.Row="0" Grid.Column="0" Visibility="Collapsed" >
+            <ComboBoxItem Name="TempLoadingSpinnerItem" IsSelected="True">
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="Loading" />
+                    <fa:ImageAwesome Name="LoadingSpinner" Icon="Spinner" Spin="True" Foreground="Black" Height="14" Width="14" Margin="5,3,0,0" />
+                </StackPanel>
+            </ComboBoxItem>
+        </ComboBox>-->
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Text="MAIL-IN RETURNEE" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="20" FontWeight="Bold" Margin="10,-10,10,0" VerticalAlignment="Center" />
+
+        <TextBlock Text="COUNTY NAME" Grid.Row="2" Grid.Column="0" Margin="0,5,0,0" VerticalAlignment="Center" Height="36" Style="{DynamicResource ModernTextBlockLabel}"/>
+        <TextBox Name="ReturnCountyName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,5,0,0" Height="36" TextChanged="SettingsChanged_TextChanged" Style="{DynamicResource ModernTextboxStyleWithBorder}"/>
+
+        <TextBlock Text="CLERK'S NAME" Grid.Row="3" Grid.Column="0" Margin="0,5,0,0" VerticalAlignment="Center" Height="36" Style="{DynamicResource ModernTextBlockLabel}"/>
+        <TextBox Name="ReturnClerksName" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,5,0,0" Height="36" TextChanged="SettingsChanged_TextChanged" Style="{DynamicResource ModernTextboxStyleWithBorder}"/>
+
+        <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,3,0,2" />
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Text="APPLICATION RETURN ADDRESS" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="20" FontWeight="Bold" Margin="10,-8,10,0" VerticalAlignment="Center" />
+
+        <TextBlock Text="ADDRESS 1" Grid.Row="6" Grid.Column="0" Margin="0,5,0,0" VerticalAlignment="Center" Height="36" Style="{DynamicResource ModernTextBlockLabel}"/>
+        <TextBox Name="ReturnAddressOne" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,5,0,0" Height="36" TextChanged="SettingsChanged_TextChanged" Style="{DynamicResource ModernTextboxStyleWithBorder}"/>        
+
+        <TextBlock Text="ADDRESS 2" Grid.Row="7" Grid.Column="0" Margin="0,5,0,0" VerticalAlignment="Center" Height="36" Style="{DynamicResource ModernTextBlockLabel}"/>
+        <TextBox Name="ReturnAddressTwo" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,5,0,0" Height="36" TextChanged="SettingsChanged_TextChanged" Style="{DynamicResource ModernTextboxStyleWithBorder}"/>
+
+        <TextBlock Text="CITY" Grid.Row="8" Grid.Column="0" Margin="0,5,0,0" VerticalAlignment="Center" Height="36" Style="{DynamicResource ModernTextBlockLabel}"/>
+        <TextBox Name="ReturnCity" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,5,0,0" Height="36" TextChanged="SettingsChanged_TextChanged" Style="{DynamicResource ModernTextboxStyleWithBorder}"/>
+
+        <TextBlock Text="STATE" Grid.Row="9" Grid.Column="0" Margin="0,5,0,0" VerticalAlignment="Center" Height="36" Width="200" Style="{DynamicResource ModernTextBlockLabel}" />
+        <TextBox Name="ReturnState" Grid.Row="9" Grid.Column="1" Margin="5,5,0,0" Height="36" TextChanged="SettingsChanged_TextChanged" Style="{DynamicResource ModernTextboxStyleWithBorder}" MinWidth="150" MaxLength="2" />
+
+        <TextBlock Text="ZIP" Grid.Row="9" Grid.Column="2" Margin="10,5,0,0" VerticalAlignment="Center" Height="36" Style="{DynamicResource ModernTextBlockLabel}" />
+        <TextBox Name="ReturnZip" Grid.Row="9" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5,5,0,0" Height="36" TextChanged="SettingsChanged_TextChanged" Style="{DynamicResource ModernTextboxStyleWithBorder}" MinWidth="200" />
+
+        <Border Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,3,0,2" />
+
+        <TextBlock Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="4" Text="BALLOT RETURN ADDRESS" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="20" FontWeight="Bold" Margin="10,-8,10,0" VerticalAlignment="Center" />
+
+        <TextBlock Text="ADDRESS 1" Grid.Row="12" Grid.Column="0" Margin="0,5,0,0" VerticalAlignment="Center" Height="36" Style="{DynamicResource ModernTextBlockLabel}"/>
+        <TextBox Name="BallotReturnAddressOne" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,5,0,0" Height="36" TextChanged="SettingsChanged_TextChanged" Style="{DynamicResource ModernTextboxStyleWithBorder}"/>
+
+        <TextBlock Text="ADDRESS 2" Grid.Row="13" Grid.Column="0" Margin="0,5,0,0" VerticalAlignment="Center" Height="36" Style="{DynamicResource ModernTextBlockLabel}"/>
+        <TextBox Name="BallotReturnAddressTwo" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,5,0,0" Height="36" TextChanged="SettingsChanged_TextChanged" Style="{DynamicResource ModernTextboxStyleWithBorder}"/>
+
+        <TextBlock Text="CITY" Grid.Row="14" Grid.Column="0" Margin="0,5,0,0" VerticalAlignment="Center" Height="36" Style="{DynamicResource ModernTextBlockLabel}"/>
+        <TextBox Name="BallotReturnCity" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,5,0,0" Height="36" TextChanged="SettingsChanged_TextChanged" Style="{DynamicResource ModernTextboxStyleWithBorder}"/>
+
+        <TextBlock Text="STATE" Grid.Row="15" Grid.Column="0" Margin="0,5,0,0" VerticalAlignment="Center" Height="36" Width="200" Style="{DynamicResource ModernTextBlockLabel}" />
+        <TextBox Name="BallotReturnState" Grid.Row="15" Grid.Column="1" Margin="5,5,0,0" Height="36" TextChanged="SettingsChanged_TextChanged" Style="{DynamicResource ModernTextboxStyleWithBorder}" MinWidth="150" MaxLength="2" />
+
+        <TextBlock Text="ZIP" Grid.Row="16" Grid.Column="2" Margin="10,5,0,0" VerticalAlignment="Center" Height="36" Style="{DynamicResource ModernTextBlockLabel}" />
+        <TextBox Name="BallotReturnZip" Grid.Row="16" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5,5,0,0" Height="36" TextChanged="SettingsChanged_TextChanged" Style="{DynamicResource ModernTextboxStyleWithBorder}" MinWidth="200" />
+
+    </Grid>
+</local:SettingsBasePage>

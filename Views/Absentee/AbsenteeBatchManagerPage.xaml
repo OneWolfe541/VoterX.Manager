@@ -1,0 +1,142 @@
+﻿<Page x:Class="VoterX.AbsenteeBatchManagerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:convert="clr-namespace:VoterX.Converters"
+      mc:Ignorable="d"
+      FontSize="16">
+
+    <Page.Resources>
+        <convert:TextColorConverter x:Key="convLog" />
+        <convert:PartyColorConverter x:Key="convParty" />
+        <convert:BallotStyleConverter x:Key="convBallot" />
+    </Page.Resources>
+
+    <Grid Name="PageGrid">        
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <!-- Blank Canvas in order to trick ScrollViewer to work while mouse is anywhere on the form -->
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="10" Grid.ColumnSpan="10" Background="Transparent" PreviewMouseWheel="Page_PreviewMouseWheel" />
+
+        <Button Name="BackButton" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,15,0,0" Height="42" Width="250" Click="BackButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                <fa:ImageAwesome Name="fa_arrowleft" Icon="ArrowLeft" Foreground="White" Height="19" Width="19" Margin="0,1,10,0" />
+                <TextBlock Text="BACK TO MENU" FontSize="18" />
+            </StackPanel>
+        </Button>
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <Border Name="SearchListBorder" Grid.Column="1" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="700" Margin="0,11,0,10" Padding="0" Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,1,1" Panel.ZIndex="99">
+            <Grid>
+                <ScrollViewer Name="SearchScrollViewer" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Margin="0,-3,0,0" Padding="0" Panel.ZIndex="1">
+                    <ListView Name="BatchListView" ItemsSource="{Binding batchList}" Width="703" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" HorizontalAlignment="Center" HorizontalContentAlignment="Stretch" Background="Transparent" BorderBrush="Transparent" Margin="-3,0,-3,0" Padding="0" SelectionChanged="BatchListView_SelectionChanged" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate DataType="data:avBatch">
+                                <Grid Margin="0,0,0,0" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="80" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Name="LabelBorder" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Background="Transparent" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0,0,0,2" Margin="-3,0,-3,0" CornerRadius="0" >
+
+                                    </Border>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="12,5,0,0" >
+                                        <TextBlock Text="BATCH NO: " />
+                                        <TextBlock Text="{Binding BatchId}" />
+                                        <TextBlock Text="-" Margin="5,0,0,0" />
+                                        <TextBlock Text="COUNTY CODE: " Margin="5,0,0,0" />
+                                        <TextBlock Text="{Binding CountyCode}"  />
+                                        <TextBlock Text="-" Margin="5,0,0,0" />
+                                        <TextBlock Text="LOG CODE: " Margin="5,0,0,0" />
+                                        <TextBlock Text="{Binding LogDescription}" >
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <!-- Ballot Style Check Added 3/9/18 ## In order to provide a more visual que to the user that a voter is ineligible -->                                                        
+                                                        <DataTrigger Binding="{Binding LogCode, Converter={StaticResource convLog}}" Value="True">
+                                                            <Setter Property="Foreground" Value="Green" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding LogCode, Converter={StaticResource convLog}}" Value="False">
+                                                            <Setter Property="Foreground" Value="Red" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="12,0,0,0" >
+                                        <TextBlock Text="SITE: " />
+                                        <TextBlock Name="SiteName" Text="{Binding LocationName}" Foreground="Green" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="12,0,0,5">
+                                        <TextBlock Text="CREATED: " />
+                                        <TextBlock Text="{Binding BatchCreatedDate}" />
+                                        <TextBlock Text="-" Margin="5,0,0,0" />
+                                        <TextBlock Text="VOTERS IN BATCH: " Margin="5,0,0,0" />
+                                        <TextBlock Text="{Binding VoterCount}" />
+                                        <TextBlock Text="-" Margin="5,0,0,0" />
+                                        <TextBlock Text="STATUS: " Margin="5,0,0,0" />
+                                        <TextBlock Text="{Binding BatchStatus}" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <!--<Setter Property="Focusable" Value="False" />-->
+                                <!--<EventSetter Event="LostFocus" Handler="ListViewItem_LostFocus" />-->
+                                <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Panel.ZIndex" Value="-1"/>
+                                        <!--<Setter Property="Margin" Value="10,0,0,0" />-->
+                                    </Trigger>                                    
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>                    
+                </ScrollViewer>
+                <StackPanel Name="SearchingPanel" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,3,0,10" Visibility="Collapsed">
+                    <TextBlock Text="Searching" FontSize="20" Foreground="Black" />
+                    <fa:ImageAwesome Name="LoadingSpinnerSearchPanel" Icon="Spinner" Spin="True" Foreground="Black" Height="20" Width="20" Margin="5,3,0,0"/>
+                </StackPanel>
+                <TextBlock Name="SearchResults" FontSize="20" Margin="10,3,0,10" Visibility="Collapsed"></TextBlock>
+            </Grid>
+        </Border>
+
+        <!-- COLUMN THREE ############################################################################ -->
+
+        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,10,15,0">
+            <!--<TextBlock Name="ApplicationStatusText" FontSize="14" />-->
+            <Button Name="PrintBallotBatch" HorizontalAlignment="Center" VerticalAlignment="Top" Click="PrintBallotBatch_Click" Width="250" Height="42" FontSize="18" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_print" Icon="Print" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="PRINT THIS BATCH" FontSize="18" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Page>

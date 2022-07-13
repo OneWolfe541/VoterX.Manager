@@ -1,0 +1,662 @@
+﻿<Page x:Class="VoterX.AllMailDetailsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      FontSize="14" >
+
+    <Page.CommandBindings>
+        <CommandBinding Command="Save" Executed="SaveExecuted" />
+    </Page.CommandBindings>
+
+    <Page.InputBindings>
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="Save"/>
+    </Page.InputBindings>
+
+    <Page.Resources>
+        <sys:Double x:Key="iconHeight">10</sys:Double>
+        <sys:Double x:Key="iconWidth">10</sys:Double>
+        <sys:Double x:Key="fieldHeight">22</sys:Double>
+    </Page.Resources>
+
+    <Grid Name="PageGrid" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <!-- Place holder box for displaying Animated Loading message for async lists -->
+        <ComboBox Name="TempLoadingSpinner" Grid.Column="0" Visibility="Collapsed" >
+            <ComboBoxItem Name="TempLoadingSpinnerItem" IsSelected="True">
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="Loading" />
+                    <fa:ImageAwesome Name="LoadingSpinner" Icon="Spinner" Spin="True" Foreground="Black" Height="{StaticResource iconHeight}" Width="{StaticResource iconWidth}" Margin="5,3,0,0" />
+                </StackPanel>
+            </ComboBoxItem>
+        </ComboBox>
+
+        <!-- COLUMN TWO ############################################################################ -->
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <Grid Name="VoterDetailGrid" Margin="60,25,20,0" HorizontalAlignment="Left" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="20"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="20"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="20"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="20"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--<StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical" Margin="0,10,0,5" >
+                    <TextBlock Name="CheckVoterInfoMessage" Text="PLEASE ENTER THE VOTER'S INFORMATION IN THE BOXES BELOW" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />
+                    <TextBlock Text="* Indicates a required field" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />
+                </StackPanel>-->
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="VoterIdPanel" Orientation="Horizontal" >
+                        <Border Name="VoterIdLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="VOTER ID" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="VoterId" Width="150" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Name="BirthYearPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="BirthYearLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="90" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="BIRTH YEAR" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="BirthYear" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Name="GenderPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="GenderLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="65" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="GENDER" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="Gender" Width="50" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="LastNamePanel" Orientation="Horizontal" >
+                        <Border Name="LastNameLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="LAST NAME" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="LastName" Width="250" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Name="GenerationPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="GenerationLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="GENERATION" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="Generation" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FirstNameGrid" Orientation="Horizontal" >
+                        <Border Name="FirstNameLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="FIRST NAME" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="VoterTitle" Width="50" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" Visibility="Collapsed" />
+                        <TextBox Name="FirstName" Width="250" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Name="MiddleNamePanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="MiddleNameLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="MIDDLE NAME" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="MiddleName" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,3,0,2" />
+
+                <StackPanel Grid.Row="5" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="PrecinctPartsPanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="PrecinctPartsLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="PRECINCT PART" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="PrecinctPartsList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" SelectionChanged="PrecinctPartsList_SelectionChanged"  Style="{DynamicResource ComboBoxFlatStyle}" IsEnabled="False" >
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Name="PartyGrid" Orientation="Horizontal" Visibility="Visible" Margin="5,0,0,0">
+                        <Border Name="PartyLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="PARTY" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="Party" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                        <!--<ComboBox Name="PartyList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" SelectionChanged="PartyList_SelectionChanged"  Style="{DynamicResource ComboBoxFlatStyle}" >
+                        </ComboBox>-->
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="6" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="BallotStylePanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="BallotStyleLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="BALLOT STYLE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="BallotStylesList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" SelectionChanged="BallotStylesList_SelectionChanged" Style="{DynamicResource ComboBoxFlatStyle}" IsEnabled="False" >
+                        </ComboBox>
+                    </StackPanel>
+                    <Button Name="UpdateBallotStyleButton" Height="{StaticResource fieldHeight}" Width="228" Margin="5,0,0,0" Padding="5,0,5,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="UpdateBallotStyleButton_Click" Style="{DynamicResource ModernButtonStyle}" Visibility="Hidden">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:ImageAwesome Name="fa_wrench" Icon="Wrench" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{StaticResource iconHeight}" Width="{StaticResource iconWidth}" Margin="0,1,7,0" />
+                            <TextBlock Text="UPDATE BALLOT STYLE" FontSize="14" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <Border Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,3,0,2" />
+
+                <StackPanel Grid.Row="8" Orientation="Horizontal" Margin="0,0,0,0" >
+                    <TextBlock Text="MAILING ADDRESS" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="9" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="MailingAddress1Panel" Orientation="Horizontal" >
+                        <Border Name="MailingAddres1Label" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="ADDRESS 1" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="MailingAddress1" Width="485" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="10" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="MailingAddress2Panel" Orientation="Horizontal" >
+                        <Border Name="MailingAddres2Label" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="ADDRESS 2" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="MailingAddress2" Width="485" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="11" Orientation="Vertical" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Orientation="Horizontal" Visibility="Visible" >
+                        <StackPanel Name="MailingCityPanel" Orientation="Horizontal" >
+                            <Border Name="MailingCityLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                                <TextBlock Text="CITY" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                            </Border>
+                            <TextBox Name="MailingCity" Width="250" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                        </StackPanel>
+
+                        <StackPanel Name="MailingStatePanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                            <Border Name="MailingStateLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="50" Height="{StaticResource fieldHeight}" Margin="0" >
+                                <TextBlock Text="STATE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                            </Border>
+                            <TextBox Name="MailingState" Width="60" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                        </StackPanel>
+
+                        <StackPanel Name="MailingZipPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                            <Border Name="MailingZipLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="50" Height="{StaticResource fieldHeight}" Margin="0" >
+                                <TextBlock Text="ZIP" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                            </Border>
+                            <TextBox Name="MailingZip" Width="65" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <StackPanel Name="MailingCountryPanel" Orientation="Horizontal" Visibility="Visible" Margin="0,5,0,0" >
+                        <Border Name="MailingCountryLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="COUNTRY" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="MailingCountry" Width="485" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,3,0,2" />
+
+                <StackPanel Grid.Row="13" Orientation="Horizontal" Margin="0,0,0,0" >
+                    <TextBlock Text="REGISTERED ADDRESS" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="14" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="PhysicalAddress1Panel" Orientation="Horizontal" >
+                        <Border Name="PhysicalAddres1Label" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="ADDRESS 1" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="PhysicalAddress1" Width="485" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="15" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="PhysicalAddress2Panel" Orientation="Horizontal" >
+                        <Border Name="PhysicalAddres2Label" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="ADDRESS 2" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="PhysicalAddress2" Width="485" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="16" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="PhysicalCityPanel" Orientation="Horizontal" >
+                        <Border Name="PhysicalCityLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="CITY" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="PhysicalCity" Width="250" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Name="PhysicalStatePanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="PhysicalStateLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="50" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="STATE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="PhysicalState" Width="60" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Name="PhysicalZipPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="PhysicalZipLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="50" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="ZIP" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="PhysicalZip" Width="65" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="17" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,3,0,2" />
+
+                <StackPanel Grid.Row="18" Orientation="Horizontal" Margin="0,0,0,0" >
+                    <TextBlock Text="TEMP ADDRESS" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />
+                    <!--<TextBlock Text=" - TEMP ADDRESS GOES HERE" FontSize="10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />-->
+                </StackPanel>
+
+                <StackPanel Grid.Row="19" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="TempAddress1Panel" Orientation="Horizontal" >
+                        <Border Name="TempAddres1Label" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="ADDRESS 1" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="TempAddress1" Width="485" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="20" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="TempAddress2Panel" Orientation="Horizontal" >
+                        <Border Name="TempAddres2Label" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="ADDRESS 2" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="TempAddress2" Width="485" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="21" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="TempCityPanel" Orientation="Horizontal" >
+                        <Border Name="TempCityLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="CITY" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="TempCity" Width="250" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" />
+                    </StackPanel>
+
+                    <StackPanel Name="TempStatePanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="TempStateLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="50" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="STATE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="TempState" Width="60" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" />
+                    </StackPanel>
+
+                    <StackPanel Name="TempZipPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="TempZipLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="50" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="ZIP" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="TempZip" Width="65" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="23" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="TempCountryPanel" Orientation="Horizontal" >
+                        <Border Name="TempCountryLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="COUNTRY" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="TempCountry" Width="485" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" />
+                    </StackPanel>
+                </StackPanel>
+
+            </Grid>
+
+        </StackPanel>
+
+        <!-- COLUMN THREE ############################################################################ -->
+
+        <StackPanel Grid.Column="2" Orientation="Vertical">
+            <Grid Name="VoterDetailExtendedGrid" Margin="20,25,60,0" HorizontalAlignment="Right" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="0"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="0"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="0"/>
+
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+
+                <StackPanel Grid.Row="1" Orientation="Vertical" >
+                    <StackPanel Name="ProvisionalOnlyGrid" Orientation="Horizontal" Visibility="Collapsed" >
+                        <CheckBox Name="ProvisionalOnlyCheck" HorizontalAlignment="Left" Margin="0,-3,0,0" Style="{DynamicResource CheckBoxStyleSmall16}" Click="ProvisionalOnlyCheck_Click" IsEnabled="False" >
+                            <TextBlock Text="PROVISIONAL ONLY" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="0,6,0,0" />
+                        </CheckBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,10">
+                        <StackPanel Name="IdRequiredGrid" Orientation="Horizontal" >
+                            <CheckBox Name="IdRequiredCheck" HorizontalAlignment="Left" Margin="0,-3,0,0" Style="{DynamicResource CheckBoxStyleSmall16}" Click="IdRequiredCheck_Click" IsEnabled="False" >
+                                <TextBlock Text="VALID ID REQUIRED" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="0,6,0,0" />
+                            </CheckBox>
+                        </StackPanel>
+
+                        <StackPanel Name="VoterStatusPanel" Orientation="Horizontal" Margin="10,0,0,0" >
+                            <Border Name="VoterStatusLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                                <TextBlock Text="VOTER STATUS" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                            </Border>
+                            <TextBox Name="VoterStatus" Width="30" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                        </StackPanel>
+
+                        <StackPanel Name="VoterTypePanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                            <Border Name="VoterTypeLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                                <TextBlock Text="VOTER TYPE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                            </Border>
+                            <!--<TextBox Name="FederalStatus" Width="30" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" />-->
+                            <ComboBox Name="VoterTypeList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Style="{DynamicResource ComboBoxFlatStyle}" SelectionChanged="VoterTypeList_SelectionChanged" IsEnabled="False" >
+                                <ComboBoxItem Name="RegularVoterType" Content="REGULAR" DataContext="R" ></ComboBoxItem>
+                                <ComboBoxItem Name="UniformedVoterType" Content="UNIFORMED SERVICES" DataContext="U" ></ComboBoxItem>
+                                <ComboBoxItem Name="OverseasVoterType" Content="OVERSEAS VOTER" DataContext="O" ></ComboBoxItem>
+                                <ComboBoxItem Name="EmergencyVoterType" Content="EMERGENCY RESPONDER" DataContext="E" ></ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="2" Grid.RowSpan="6" Width="577" BorderBrush="{DynamicResource ApplicationPrimaryColor}" Background="{DynamicResource ApplicationMessageBackgroundColor}" HorizontalAlignment="Left" BorderThickness="1,1,1,1" Margin="0,0,0,13" Visibility="Collapsed" >
+                    <StackPanel Name="BigBatchPanel" Orientation="Vertical">
+                        <TextBlock Text="THE BIG BATCH BOX" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="0,3,0,0" />
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Grid.Row="5" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="LogcodePanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="LogcodeLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="CURRENT STATUS" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="LogCodesList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="437" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" SelectionChanged="LogCodesList_SelectionChanged" Style="{DynamicResource ComboBoxFlatStyle}" IsEnabled="False" >
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="6" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="LogDatePanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="LogDateLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="CURRENT DATE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="LogDate" Width="437" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="7" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="SitesPanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="SitesLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="SITE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="SitesList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="291" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" SelectionChanged="LogCodesList_SelectionChanged" Style="{DynamicResource ComboBoxFlatStyle}" IsEnabled="False" >
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Name="ComputerPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="ComputerLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="COMPUTER" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="Computer" Width="30" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="10" BorderBrush="Black" BorderThickness="1,1,1,1" HorizontalAlignment="Stretch" Margin="0,0,0,27" Visibility="Collapsed" Grid.RowSpan="5" />
+
+                <StackPanel Grid.Row="9" Orientation="Horizontal" Visibility="Collapsed" Margin="0,0,0,27" Grid.RowSpan="6">
+                    <StackPanel Name="ApplicationIssuedPanel" Orientation="Horizontal" >
+                        <Border Name="ApplicationIssuedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="APPLICATION ISSUED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="ApplicationIssuedDate" Width="375" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="10" Orientation="Horizontal" Visibility="Collapsed" Margin="0,0,0,27" Grid.RowSpan="5">
+                    <StackPanel Name="ApplicationRejectedPanel" Orientation="Horizontal" >
+                        <Border Name="ApplicationRejectedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="APPLICATION REJECTED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="ApplicationRejectedDate" Width="375" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="11" Orientation="Horizontal" Visibility="Collapsed" Margin="0,0,0,27" Grid.RowSpan="4">
+                    <StackPanel Name="ApplicationAcceptedPanel" Orientation="Horizontal" >
+                        <Border Name="ApplicationAcceptedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="APPLICATION ACCEPTED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="ApplicationAcceptedDate" Width="375" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="14" BorderBrush="Black" BorderThickness="1,1,1,1" HorizontalAlignment="Stretch" Margin="0,0,0,27" Visibility="Collapsed" />
+
+                <StackPanel Grid.Row="13" Orientation="Horizontal" Visibility="Collapsed" Margin="0,0,0,27" Grid.RowSpan="2">
+                    <StackPanel Name="BallotIssuedPanel" Orientation="Horizontal" >
+                        <Border Name="BallotIssuedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="BALLOT ISSUED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="BallotIssuedDate" Width="375" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="14" Orientation="Horizontal" Visibility="Visible" Margin="0,10,0,5">
+                    <StackPanel Name="BallotPrintedPanel" Orientation="Horizontal" >
+                        <Border Name="BallotPrintedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="BALLOT PRINTED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="BallotPrintedDate" Width="437" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="15" BorderBrush="Black" BorderThickness="1,1,1,1" HorizontalAlignment="Stretch" Margin="0,10,0,9" />
+
+                <StackPanel Name="Uocava_panel1" Grid.Row="16" Orientation="Horizontal" Margin="0,0,0,19" Visibility="Collapsed" Grid.RowSpan="5" >
+                    <TextBlock Text="UOCAVA ABSENTEE" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />
+                </StackPanel>
+
+                <StackPanel Name="Uocava_panel2" Grid.Row="17" Orientation="Horizontal" Margin="0,0,0,19" Visibility="Collapsed" Grid.RowSpan="4" >
+                    <StackPanel Name="ApplycationSourcePanel" Orientation="Horizontal" Margin="0,0,0,0" >
+                        <Border Name="ApplicationSourceLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="90" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="APP SOURCE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <!--<TextBox Name="ApplicationSource" Width="90" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" />-->
+                        <ComboBox Name="ApplicationSourceList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Style="{DynamicResource ComboBoxFlatStyle}" IsEnabled="False" >
+                            <ComboBoxItem Content="Mail" DataContext="M" ></ComboBoxItem>
+                            <ComboBoxItem Content="Email" DataContext="E" ></ComboBoxItem>
+                            <ComboBoxItem Content="In Person" DataContext="I" ></ComboBoxItem>
+                            <ComboBoxItem Content="Electronic" DataContext="L" ></ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Name="ApplycationTypePanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="ApplicationTypeLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="90" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="APP TYPE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <!--<TextBox Name="ApplicationType" Width="90" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" />-->
+                        <ComboBox Name="ApplicationTypeList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Style="{DynamicResource ComboBoxFlatStyle}" IsEnabled="False" >
+                            <ComboBoxItem Content="Regular" DataContext="R" ></ComboBoxItem>
+                            <ComboBoxItem Content="FPCA" DataContext="F" ></ComboBoxItem>
+                            <ComboBoxItem Content="FWAB" DataContext="W" ></ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Name="DeliveryMethodPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="DeliveryMethodLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="132" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="DELIVERY METHOD" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <!--<TextBox Name="DeliveryMethod" Width="73" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" />-->
+                        <ComboBox Name="DeliveryMethodList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="73" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Style="{DynamicResource ComboBoxFlatStyle}" IsEnabled="False" >
+                            <ComboBoxItem Content="Mail" DataContext="M" ></ComboBoxItem>
+                            <ComboBoxItem Content="Email" DataContext="E" ></ComboBoxItem>
+                            <ComboBoxItem Content="Fax" DataContext="F" ></ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Name="Uocava_panel3" Grid.Row="18" Orientation="Horizontal" Margin="0,0,0,19" Visibility="Collapsed" Grid.RowSpan="3" >
+                    <StackPanel Name="VoterEmailPanel" Orientation="Horizontal" >
+                        <Border Name="VoterEmailLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="VOTER EMAIL" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="VoterEmail" Width="200" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True"  />
+                    </StackPanel>
+
+                    <StackPanel Name="VoterFaxPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="VoterFaxLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="90" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="VOTER FAX" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="VoterFax" Width="140" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="20" Orientation="Horizontal" Margin="0,15,0,0" >
+                    <TextBlock Text="LAST DELIVERED TO ADDRESS" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />
+                    <!--<TextBlock Text=" - TEMP ADDRESS GOES HERE" FontSize="10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />-->
+                </StackPanel>
+
+                <StackPanel Grid.Row="22" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="DeliveryAddress1Panel" Orientation="Horizontal" >
+                        <Border Name="DeliveryAddres1Label" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="ADDRESS 1" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="DeliveryAddress1" Width="437" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" Focusable="False" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="23" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="DeliveryAddress2Panel" Orientation="Horizontal" >
+                        <Border Name="DeliveryAddres2Label" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="ADDRESS 2" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="DeliveryAddress2" Width="437" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" Focusable="False" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="24" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="DeliveryCityPanel" Orientation="Horizontal" >
+                        <Border Name="DeliveryCityLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="CITY" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="DeliveryCity" Width="200" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" Focusable="False" />
+                    </StackPanel>
+
+                    <StackPanel Name="DeliveryStatePanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="DeliveryStateLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="50" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="STATE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="DeliveryState" Width="60" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" Focusable="False" />
+                    </StackPanel>
+
+                    <StackPanel Name="DeliveryZipPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="DeliveryZipLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="50" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="ZIP" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Name="DeliveryZip" Width="67" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" Focusable="False" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="25" Name="DeliveryCountryPanel" Orientation="Horizontal" Margin="0,0,0,0" >
+                    <Border Name="DeliveryCountryLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                        <TextBlock Text="COUNTRY" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                    </Border>
+                    <TextBox Name="DeliveryCountry" Width="437" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" TextChanged="Voter_TextChanged" IsReadOnly="True" />
+                </StackPanel>
+
+
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Name="ProvisionalFunctions" Grid.Column="2" Orientation="Vertical" Visibility="Collapsed" VerticalAlignment="Stretch" Margin="0,15,15,0" >
+            <Button Name="SaveChangesButton" Height="42" Padding="5" Width="250" Margin="0,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="SaveChanges_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_SAVE" Icon="Save" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{StaticResource iconHeight}" Width="{StaticResource iconWidth}" Margin="0,1,7,0" />
+                    <TextBlock Text="SAVE CHANGES" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="ValidateEntryButton" Height="42" Padding="5" Width="250" Margin="0,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="ValidateEntryButton_Click" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="VALIDATE ENTRY" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Page>

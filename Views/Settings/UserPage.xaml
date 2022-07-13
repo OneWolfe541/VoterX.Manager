@@ -1,0 +1,32 @@
+﻿<local:SettingsBasePage x:Class="VoterX.UserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      mc:Ignorable="d" 
+      FontSize="20">
+
+    <Grid Name="UserGrid" Margin="0,5,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="User" Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <TextBox Name="UserName" Grid.Row="0" Grid.Column="1" Margin="5,0,0,0"/>
+
+        <TextBlock Text="User ID" Grid.Row="0" Grid.Column="2" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <TextBox Name="UserID" Grid.Row="0" Grid.Column="3" Margin="5,0,0,0"/>
+
+
+    </Grid>
+</local:SettingsBasePage>

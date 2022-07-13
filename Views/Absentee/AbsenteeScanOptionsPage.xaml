@@ -1,0 +1,57 @@
+﻿<Page x:Class="VoterX.AbsenteeScanOptionsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      FontSize="18">
+
+    <Grid Name="PageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,0,0,0" VerticalAlignment="Center" >
+            <StackPanel Name="ReturnedApplicationsPanel" Orientation="Vertical" Visibility="Visible" >
+                <Button Name="ScanReturnedApplications" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,0,0,5" Height="42" Width="300" Click="ScanReturnedApplications_Click" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <fa:ImageAwesome Name="fa_clipboard" Icon="Clipboard" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="10,1,10,0" />
+                        <TextBlock Text="RETURNED APPLICATIONS" FontSize="18" />
+                    </StackPanel>
+                </Button>
+
+                <TextBlock Text="SCAN ACCEPTED APPLICATIONS" Foreground="{DynamicResource ApplicationPrimaryColor}" FontWeight="Bold" FontSize="18" Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock Text="REJECTED APPLICATIONS SHOULD BE SEPARATED FROM THE" Foreground="{DynamicResource ApplicationDangerColor}" FontSize="16" Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock Text="ACCEPTED APPLICATIONS BEFORE SCANNING BEGINS" Foreground="{DynamicResource ApplicationDangerColor}" FontSize="16" Margin="0,0,0,65" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </StackPanel>
+
+            <StackPanel Name="ReturnedBallotsPanel" Orientation="Vertical" Visibility="Visible" >
+                <Button Name="ScanReturnedBallots" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,0,0,5" Height="42" Width="300" Click="ScanReturnedBallots_Click" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <fa:ImageAwesome Name="fa_envelope" Icon="EnvelopeOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="10,1,10,0" />
+                        <TextBlock Text="RETURNED ENVELOPES" FontSize="18" />
+                    </StackPanel>
+                </Button>
+
+                <TextBlock Text="SCAN ABSENTEE ENVELOPES" Foreground="{DynamicResource ApplicationPrimaryColor}" FontWeight="Bold" FontSize="18" Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock Text="YOU HAVE THE OPTION OF SCANNING ACCEPTED BALLOTS OR" Foreground="{DynamicResource ApplicationDangerColor}" FontSize="16" Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock Text="UNSIGNED RETURNED ENVELOPES. THESE SHOULD BE SEPARATED" Foreground="{DynamicResource ApplicationDangerColor}" FontSize="16" Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock Text="BEFORE SCANNING BEGINS" Foreground="{DynamicResource ApplicationDangerColor}" FontSize="16" Margin="0,0,0,25" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </StackPanel>
+        </StackPanel>
+
+        <!-- COLUMN THREE ############################################################################ -->
+
+
+    </Grid>
+</Page>

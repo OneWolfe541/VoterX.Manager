@@ -1,0 +1,177 @@
+﻿<Page x:Class="VoterX.Manager.Views.Manage.ManualUpdatePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Manager.Views.Manage"
+      xmlns:convert="clr-namespace:VoterX.Utilities.Converters;assembly=VoterX.Utilities"
+      xmlns:views="clr-namespace:VoterX.Utilities.Views;assembly=VoterX.Utilities"
+      xmlns:ext="clr-namespace:VoterX.Utilities.Extensions;assembly=VoterX.Utilities"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      FontSize="{DynamicResource FontSizeSmall}"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <convert:BooleanToVisibilityConverter x:Key="convVis" />
+    </Page.Resources>
+
+    <Grid Name="PageGrid" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="375" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <Grid Name="ScanGrid" Grid.Row="0" Grid.Column="0" Margin="15,10,0,0" Visibility="Visible" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <CheckBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="SessionCheck" HorizontalAlignment="Left" Margin="10,0,0,5" Style="{DynamicResource CheckBoxStyleLarge32}" 
+                      IsChecked="{Binding IsScanSession}"
+                      IsEnabled="{Binding CanScanSession}">
+                <TextBlock Text="LOAD A SCANNED SESSION" FontSize="{DynamicResource FontSizeNormal}" Margin="0,10,0,10" FontWeight="Bold" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            </CheckBox>
+
+            <StackPanel Name="SessionMessage" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" Margin="8,0,0,10" Visibility="{Binding Path=SessionDetailsVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}" >
+                <TextBlock Text="SCAN ANY VOTER TO" FontSize="{DynamicResource FontSizeNormal}" FontWeight="Bold" TextWrapping="Wrap" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBlock Text="LOAD THE SESSION" FontSize="{DynamicResource FontSizeNormal}" FontWeight="Bold" TextWrapping="Wrap" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="VOTER ID" VerticalAlignment="Bottom" Height="42" Margin="5,0,0,0" FontSize="{DynamicResource FontSizeNormal}" Style="{DynamicResource ModernTextBlockLabel}" />
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=BarCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Height="42" Margin="5,0,0,0" Padding="5,8,0,0" FontSize="{DynamicResource FontSizeNormal}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" 
+                     IsEnabled="{Binding CanSearch}"
+                     ext:FocusExtension.IsFocused="{Binding IsBarcodeFocused, Mode=TwoWay}">
+                <TextBox.InputBindings>
+                    <KeyBinding Command="{Binding Path=SearchCommand, UpdateSourceTrigger=PropertyChanged}" Key="Enter" />
+                </TextBox.InputBindings>
+            </TextBox>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="LAST SCANNED" VerticalAlignment="Bottom" Height="42" Margin="5,10,0,0" FontSize="{DynamicResource FontSizeNormal}" Style="{DynamicResource ModernTextBlockLabel}" />
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=PreviousBarCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Height="42" Margin="5,10,0,0" Padding="5,8,0,0" FontSize="{DynamicResource FontSizeNormal}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Focusable="False" />
+
+            <TextBlock Name="SessionDetailLabel" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="SESSION DETAILS" FontSize="{DynamicResource FontSizeNormal}" Margin="8,10,0,0" FontWeight="Bold" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="{Binding Path=SessionDetailsVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}" />
+
+            <TextBlock Grid.Row="6" Grid.Column="0" Name="SessionNumberLabel" Text="SESSION" VerticalAlignment="Bottom" Height="42" Margin="5,0,0,0" FontSize="{DynamicResource FontSizeNormal}" Style="{DynamicResource ModernTextBlockLabel}" Visibility="{Binding Path=SessionDetailsVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}" />
+            <TextBox Text="{Binding SessionNumber}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" Height="42" Margin="5,10,0,0" Padding="5,8,0,0" FontSize="{DynamicResource FontSizeNormal}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Focusable="False" Visibility="{Binding Path=SessionDetailsVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}" />
+
+            <TextBlock Grid.Row="7" Grid.Column="0" Name="SessionDateLabel" Text="DATE" VerticalAlignment="Bottom" Height="42" Margin="5,0,0,0" FontSize="{DynamicResource FontSizeNormal}" Style="{DynamicResource ModernTextBlockLabel}" Visibility="{Binding Path=SessionDetailsVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}" />
+            <TextBox Text="{Binding SessionDate}" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" Height="42" Margin="5,10,0,0" Padding="5,8,0,0" FontSize="{DynamicResource FontSizeNormal}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Focusable="False" Visibility="{Binding Path=SessionDetailsVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}" />
+
+        </Grid>
+
+        <!-- COLUMN TWO ############################################################################ -->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0,0,0,0" >
+                <TextBlock Text="SELECT WHICH LOG CODES TO CHANGE" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="18" FontWeight="Bold" Margin="0,15,0,0" VerticalAlignment="Center" />
+
+                <StackPanel Name="BallotReturnTypePanel" Orientation="Horizontal" Visibility="Visible" HorizontalAlignment="Center" Width="595" Margin="0,0,0,0">
+                    <TextBlock Text="FROM" Margin="0,5,0,0" VerticalAlignment="Top" Width="80" Height="36" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <ComboBox Name="LogCodeListChangeFrom" 
+                          DisplayMemberPath="LogDescription" 
+                          SelectedValuePath="LogCode"
+                          Width="212" Margin="5,5,0,0" Padding="5"
+                          Style="{DynamicResource ComboBoxFlatStyle}"
+                          FontSize="{DynamicResource FontSizeSmall}"
+                          ToolTip="Select a voter status"
+                          SelectedIndex="0"
+                          ItemsSource="{Binding LogCodeList}"
+                          SelectedItem="{Binding SelectedFromLogCodeItem}" />
+
+                    <TextBlock Text="TO" Margin="10,5,0,0" VerticalAlignment="Top" Width="70" Height="36" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <ComboBox Name="LogCodeListChangeTo" 
+                          DisplayMemberPath="LogDescription" 
+                          SelectedValuePath="LogCode"
+                          Width="213" Margin="5,5,0,0" Padding="5"
+                          Style="{DynamicResource ComboBoxFlatStyle}"
+                          FontSize="{DynamicResource FontSizeSmall}"
+                          ToolTip="Select a voter status"
+                          SelectedIndex="0"
+                          ItemsSource="{Binding LogCodeList}"
+                          SelectedItem="{Binding SelectedToLogCodeItem}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                    <TextBlock Text="REASON" Margin="0,0,0,0" VerticalAlignment="Top" Width="80" Height="36" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <TextBox Name="ChangeReasonBox" Text="{Binding Path=ChangeReason, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" Width="510" Height="36" Margin="5,0,0,0" Padding="5,8,0,0" MaxLength="100" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" />
+                </StackPanel>
+            </StackPanel>
+
+            <views:VoterListView Grid.Row="1" Grid.Column="0" x:Name="VoterListView" ViewPanelHeight="483" ViewPanelMargin="0,11,0,10"
+                                 DataContext="{Binding VoterList}"/>
+        </Grid>
+
+        <!-- COLUMN THREE ########################################################################## -->
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,10,15,0">
+                <Button Name="ProcessBallotsButton" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250" Height="{DynamicResource ControlHeightNormal}" FontSize="{DynamicResource FontSizeNormal}" Visibility="Visible" Margin="0,0,0,5" Style="{DynamicResource ModernButtonStyle}" 
+                        Command="{Binding ProcessBallotsCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Name="fa_envelope" Icon="EnvelopeOutlinepenOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{DynamicResource faIconSizeNormal}" Width="{DynamicResource faIconSizeNormal}" Margin="0,1,10,0" />
+                        <TextBlock Text="PROCESS ENVELOPES" FontSize="{DynamicResource FontSizeNormal}" />
+                    </StackPanel>
+                </Button>
+
+                <Button Name="RemoveVoterButton" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250" Height="{DynamicResource ControlHeightNormal}" Margin="0,45,0,0" FontSize="{DynamicResource FontSizeNormal}" Style="{DynamicResource ModernButtonStyle}"
+                        Command="{Binding RemoveVoterCommand}"
+                        Visibility="{Binding Path=RemoveVoterVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Name="fa_trash" Icon="Trash" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{DynamicResource faIconSizeNormal}" Width="{DynamicResource faIconSizeNormal}" Margin="0,1,10,0" />
+                        <TextBlock Text="REMOVE VOTER" FontSize="{DynamicResource FontSizeNormal}" />
+                    </StackPanel>
+                </Button>
+
+                <StackPanel Name="EnvelopeCountPanel" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,20,0,0" Visibility="Visible">
+                    <TextBlock Name="CurrentCountLabel" Text="SCANNED ENVELOPES" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="{DynamicResource FontSizeSmall}" FontWeight="Bold" VerticalAlignment="Center" />
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text="COUNT" Margin="0,5,0,0" VerticalAlignment="Center" FontSize="{DynamicResource FontSizeNormal}"  Height="{DynamicResource ControlHeightNormal}" Style="{DynamicResource ModernTextBlockLabel}"/>
+                        <TextBox Name="TotalEnvelopeCount" Margin="0,5,0,0" HorizontalContentAlignment="Left" FontSize="{DynamicResource FontSizeNormal}" Width="175" Style="{DynamicResource ModernTextboxStyleWithBorder}" Focusable="False" IsReadOnly="True" 
+                                 Text="{Binding EnvelopeCount}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <Button Grid.Row="2" Name="CancelBatchButton" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250" Height="{DynamicResource ControlHeightNormal}" Margin="0,0,0,15" FontSize="{DynamicResource FontSizeNormal}" Visibility="Visible" Style="{DynamicResource ModernButtonStyle}" 
+                    Command="{Binding CancelCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_ban" Icon="Ban" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{DynamicResource faIconSizeNormal}" Width="{DynamicResource faIconSizeNormal}" Margin="0,1,10,0" />
+                    <TextBlock Text="CANCEL" FontSize="{DynamicResource FontSizeNormal}" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
+    </Grid>
+</Page>

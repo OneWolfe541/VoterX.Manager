@@ -1,0 +1,278 @@
+﻿<Page x:Class="VoterX.ManualRecordUpdate"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:convert="clr-namespace:VoterX.Converters"
+      mc:Ignorable="d"
+      FontSize="16">
+
+    <Page.Resources>
+        <convert:TextColorConverter x:Key="convLog" />
+        <convert:PartyColorConverter x:Key="convParty" />
+        <convert:BallotStyleConverter x:Key="convBallot" />
+    </Page.Resources>
+
+    <Grid Name="PageGrid" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Place holder box for displaying Animated Loading message for async lists -->
+        <ComboBox Name="TempLoadingSpinner" Grid.Column="0" Visibility="Collapsed" >
+            <ComboBoxItem Name="TempLoadingSpinnerItem" IsSelected="True">
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="Loading" />
+                    <fa:ImageAwesome Name="LoadingSpinner" Icon="Spinner" Spin="True" Foreground="Black" Height="20" Width="20" Margin="5,3,0,0" />
+                </StackPanel>
+            </ComboBoxItem>
+        </ComboBox>
+
+        <!-- Blank Canvas in order to trick ScrollViewer to work while mouse is anywhere on the form -->
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="10" Grid.ColumnSpan="10" Background="Transparent" PreviewMouseWheel="Page_PreviewMouseWheel" />
+
+        <Grid Name="ScanGrid" Grid.Row="0" Grid.Column="0" Margin="15,10,0,0" Visibility="Visible" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <CheckBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="SessionCheck" HorizontalAlignment="Left" Margin="10,0,0,5" Style="{DynamicResource CheckBoxStyleLarge32}" Click="SessionCheck_Click">
+                <TextBlock Text="LOAD A SCANNED SESSION" FontSize="18" Margin="0,10,0,10" FontWeight="Bold" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            </CheckBox>
+
+            <StackPanel Name="SessionMessage" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" Margin="8,0,0,10" Visibility="Collapsed" >
+                <TextBlock Text="SCAN ANY VOTER TO" FontSize="18" FontWeight="Bold" TextWrapping="Wrap" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBlock Text="LOAD THE SESSION" FontSize="18" FontWeight="Bold" TextWrapping="Wrap" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="VOTER ID" VerticalAlignment="Bottom" Height="42" Margin="5,0,0,0" Style="{DynamicResource ModernTextBlockLabel}" />
+            <TextBox Name="BarCodeSearch" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Height="42" Margin="5,0,0,0" Padding="5,8,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" KeyDown="BarCodeSearch_KeyDown" />
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="LAST SCANNED" VerticalAlignment="Bottom" Height="42" Margin="5,10,0,0" Style="{DynamicResource ModernTextBlockLabel}" />
+            <TextBox Name="LastBarCode" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Height="42" Margin="5,10,0,0" Padding="5,8,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Focusable="False" />
+
+            <TextBlock Name="SessionDetailLabel" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="SESSION DETAILS" FontSize="18" Margin="8,10,0,0" FontWeight="Bold" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed" />
+
+            <TextBlock Grid.Row="6" Grid.Column="0" Name="SessionNumberLabel_old" Text="SESSION" VerticalAlignment="Bottom" Height="42" Margin="5,0,0,0" Style="{DynamicResource ModernTextBlockLabel}" Visibility="Collapsed" />
+            <TextBox Name="SessionNumber_old" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" Height="42" Margin="5,10,0,0" Padding="5,8,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Focusable="False" Visibility="Collapsed" />
+
+            <TextBlock Grid.Row="7" Grid.Column="0" Name="SessionDateLabel" Text="DATE" VerticalAlignment="Bottom" Height="42" Margin="5,0,0,0" Style="{DynamicResource ModernTextBlockLabel}" Visibility="Collapsed" />
+            <TextBox Name="SessionDate" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" Height="42" Margin="5,10,0,0" Padding="5,8,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Focusable="False" Visibility="Collapsed" />
+
+        </Grid>
+
+        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Stretch" >
+            <TextBlock Text="SELECT WHICH LOG CODES TO CHANGE" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="18" FontWeight="Bold" Margin="0,15,0,0" VerticalAlignment="Center" />
+            
+            <StackPanel Name="BallotReturnTypePanel" Orientation="Horizontal" Visibility="Collapsed" HorizontalAlignment="Center" Width="595" Margin="0,0,0,0">
+                <TextBlock Text="FROM" Margin="0,5,0,0" VerticalAlignment="Top" Width="75" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>
+                <ComboBox Name="LogCodeListChangeFrom" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="212" Height="42" Margin="5,5,0,0" FontSize="14" Padding="5" SelectionChanged="LogCodeList_SelectionChanged" Style="{DynamicResource ComboBoxFlatStyle}" >                
+                </ComboBox>
+
+                <TextBlock Text="TO" Margin="10,5,0,0" VerticalAlignment="Top" Width="75" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>
+                <ComboBox Name="LogCodeListChangeTo" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="213" Height="42" Margin="5,5,0,0" FontSize="14" Padding="5" SelectionChanged="LogCodeList_SelectionChanged" Style="{DynamicResource ComboBoxFlatStyle}" >
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock Text="REASON" Margin="0,0,0,0" VerticalAlignment="Top" Width="75" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>
+                <TextBox Name="ChangeReasonBox" HorizontalAlignment="Stretch" Width="515" Height="42" Margin="5,0,0,0" Padding="5,8,0,0" MaxLength="100" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" />
+            </StackPanel>
+        </StackPanel>
+
+        <Border Name="SearchListBorder" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="596" Margin="0,11,0,10" Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2">
+            <Grid>
+                <ScrollViewer Name="SearchScrollViewer" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Margin="-5,0,0,0">
+                    <ListView Name="VoterList" ItemsSource="{Binding voterList}" Width="600" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" HorizontalAlignment="Center" HorizontalContentAlignment="Stretch" Background="Transparent" BorderBrush="Transparent" Margin="0,-4,0,0" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate DataType="data:tblVoter">
+                                <Grid Margin="0,0,0,0" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="80" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Name="LabelBorder" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Background="Transparent" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0,0,0,2" CornerRadius="0" >
+
+                                    </Border>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="12,5,0,0" >
+                                        <TextBlock Text="{Binding Data.LastName}"  />
+                                        <TextBlock Text="," Foreground="Gray"/>
+                                        <TextBlock Text="{Binding Data.FirstName}" Margin="5,0,0,0" Foreground="Gray" />
+                                        <TextBlock Text="{Binding Data.MiddleName}" Margin="5,0,0,0" Foreground="Gray"/>
+                                        <!--<TextBlock Text="-" Margin="5,0,0,0" Foreground="Gray"/>
+                                        <TextBlock Text="{Binding Data.DOBYear}" Margin="5,0,0,0" Foreground="Gray"/>-->
+                                        <TextBlock Text=" " Margin="5,0,0,0" Foreground="Gray"/>
+                                        <TextBlock Text="{Binding Data.SSN}" Margin="5,0,0,0" Foreground="Gray"/>
+                                        <!--<TextBlock Text="-" Margin="5,0,0,0" Foreground="Gray"/>-->
+                                        <!--<TextBlock Text="{Binding Party}" Margin="5,0,0,0" >
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Party, Converter={StaticResource convParty}}" Value="True">
+                                                            <Setter Property="Foreground" Value="Green" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Party, Converter={StaticResource convParty}}" Value="False">
+                                                            <Setter Property="Foreground" Value="Red" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>-->
+                                    </StackPanel>
+
+                                    <!--<TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding DOBYear}" TextAlignment="Right" Margin="0,5,30,0" />-->
+
+                                    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="12,0,0,0" >
+                                        <TextBlock Text="{Binding Data.Address1}" />
+                                        <TextBlock Text="," />
+                                        <TextBlock Text="{Binding Data.City}" Margin="5,0,0,0"/>
+                                        <TextBlock Text="," />
+                                        <TextBlock Text="{Binding Data.State}" Margin="5,0,0,0"/>
+                                        <TextBlock Text="{Binding Data.Zip}" Margin="5,0,0,0"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Data.LogDescription}" Margin="12,0,0,5">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <!-- Ballot Style Check Added 3/9/18 ## In order to provide a more visual que to the user that a voter is ineligible -->
+                                                        <DataTrigger Binding="{Binding Data.BallotStyleID, Converter={StaticResource convBallot}}" Value="False" >
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Data.LogCode, Converter={StaticResource convLog}}" Value="True">
+                                                            <Setter Property="Foreground" Value="Green" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Data.LogCode, Converter={StaticResource convLog}}" Value="False">
+                                                            <Setter Property="Foreground" Value="Red" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                        <TextBlock Text="Ineligible For This Election" Foreground="Red" Margin="12,0,0,5" >
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Data.BallotStyleID, Converter={StaticResource convBallot}}" Value="False" >
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Data.BallotStyleID, Converter={StaticResource convBallot}}" Value="True" >
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </StackPanel>
+
+                                    <!--<Button Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" Height="30" Width="150" Margin="0,0,15,0" Style="{DynamicResource ModernButtonStyle}" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <fa:ImageAwesome Name="fa_caretright" Icon="CaretRight" Foreground="{DynamicResource ApplicationForegroundColor}" Height="10" Width="10" Margin="0,1,5,0" />
+                                            <TextBlock Text="SELECT" FontSize="14" />
+                                        </StackPanel>
+                                    </Button>-->
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <!--<Setter Property="Focusable" Value="False" />-->
+                                <!--<EventSetter Event="LostFocus" Handler="ListViewItem_LostFocus" />-->
+                                <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />                                
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </ScrollViewer>
+                <StackPanel Name="SearchingPanel" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,3,0,10" Visibility="Collapsed">
+                    <TextBlock Text="Searching" FontSize="20" Foreground="Black" />
+                    <fa:ImageAwesome Name="LoadingSpinnerSearchPanel" Icon="Spinner" Spin="True" Foreground="Black" Height="20" Width="20" Margin="5,3,0,0"/>
+                </StackPanel>
+                <StackPanel Name="VoterNotFoundPanel" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,3,0,10" Visibility="Collapsed">
+                    <TextBlock Text="Voter Not Found" FontSize="20" Foreground="Black" />
+                </StackPanel>
+                <TextBlock Name="SearchResults" FontSize="20" Margin="10,3,0,10" Visibility="Collapsed"></TextBlock>
+            </Grid>
+        </Border>
+        <!--</StackPanel>-->
+
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <StackPanel Grid.Row="0" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,10,15,0">
+                <Button Name="ProcessBallotsButton" HorizontalAlignment="Center" VerticalAlignment="Top" Click="ProcessBallotsButton_Click" Width="250" Height="42" FontSize="18" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" >
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Name="fa_envelope" Icon="EnvelopeOutlinepenOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                        <TextBlock Text="PROCESS ENVELOPES" />
+                    </StackPanel>
+                </Button>
+
+                <Button Name="RemoveVoterButton" HorizontalAlignment="Center" VerticalAlignment="Top" Click="RemoveVoterButton_Click" Width="250" Height="42" Margin="0,45,0,0" FontSize="18" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" >
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Name="fa_trash" Icon="Trash" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                        <TextBlock Text="REMOVE VOTER" />
+                    </StackPanel>
+                </Button>
+
+                <StackPanel Name="EnvelopeCountPanel" Orientation="Vertical" HorizontalAlignment="Center" Visibility="Collapsed">
+                    <TextBlock Name="CurrentCountLabel" Text="SCANNED ENVELOPES" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="16" FontWeight="Bold" Margin="0,20,0,0" VerticalAlignment="Center" />
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text="COUNT" Margin="0,5,0,0" VerticalAlignment="Center" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>
+                        <TextBox Name="TotalEnvelopeCount" Text="0" Margin="0,5,0,0" HorizontalContentAlignment="Left" Width="175" Style="{DynamicResource ModernTextboxStyleWithBorder}" Focusable="False" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>            
+
+            <Button Grid.Row="2" Name="CancelBatchButton" HorizontalAlignment="Center" VerticalAlignment="Top" Click="CancelBatchButton_Click" Width="250" Height="42" Margin="0,0,0,15" Visibility="Visible" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_ban" Icon="Ban" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="CANCEL" />
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Row="2" Name="FinishBatchButton" HorizontalAlignment="Center" VerticalAlignment="Top" Click="CancelBatchButton_Click" Width="250" Height="42" Margin="0,0,0,15" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_ban2" Icon="Ban" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="CANCEL" />
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,141 @@
+﻿<Page x:Class="VoterX.AbsenteeRegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:VoterX"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      FontSize="20">
+
+    <Grid Name="PageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <Grid Grid.Column="1" Margin="25,65,120,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="BEGINNING DATE" FontWeight="Bold" Margin="0,0,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+            <TextBlock Text="DATE" Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" VerticalAlignment="Top" Height="32" Width="75" Padding="10,3,10,0" Style="{DynamicResource ModernTextBlockLabel}"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" >
+                <!--<TextBox Name="BeginingDate" Margin="5,0,0,0" Style="{DynamicResource ModernTextboxStyleWithBorder}" />-->
+                <DatePicker Name="BeginningDatePicker" Width="225" Height="32" Padding="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ModernDatePickerStyle}"/>
+            </StackPanel>
+            
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="Example: 10/7/2018" FontWeight="Bold" Margin="5,0,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <TextBlock Grid.Row="2" Grid.Column="3" Text="Example: 8:00 AM" FontWeight="Bold" Margin="5,0,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+
+            <TextBlock Text="TIME" Grid.Row="1" Grid.Column="2" Margin="45,0,0,0" VerticalAlignment="Top" Height="32" Width="75" Padding="10,3,10,0" Style="{DynamicResource ModernTextBlockLabel}" />
+            <TextBox Name="BeginingTime" Grid.Row="1" Grid.Column="3" Margin="5,0,0,0" Height="32" Padding="5,0,5,0" Style="{DynamicResource ModernTextboxStyleWithBorder}" />
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="ENDING DATE" FontWeight="Bold" Margin="0,25,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+            <TextBlock Text="DATE" Grid.Row="4" Grid.Column="0" Margin="0,0,0,0" VerticalAlignment="Top" Height="32" Width="75" Padding="10,3,10,0" Style="{DynamicResource ModernTextBlockLabel}" />
+            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+                <!--<TextBox Name="EndingDate" Grid.Row="4" Grid.Column="1" Margin="5,0,0,0" Style="{DynamicResource ModernTextboxStyleWithBorder}" />-->
+                <DatePicker Name="EndingDatePicker" Width="225" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedDate="{x:Static System:DateTime.Now}" Style="{DynamicResource ModernDatePickerStyle}"/>
+            </StackPanel>
+
+            <TextBlock Text="TIME" Grid.Row="4" Grid.Column="2" Margin="45,0,0,0" VerticalAlignment="Top" Height="32" Width="75" Padding="10,3,10,0" Style="{DynamicResource ModernTextBlockLabel}" />
+            <TextBox Name="EndingTime" Grid.Row="4" Grid.Column="3" Margin="5,0,0,0" Height="32" Padding="5,0,5,0" Style="{DynamicResource ModernTextboxStyleWithBorder}" />
+
+            <Button Name="CalculateDateRangeButton" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,25,0,5" Height="42" Width="300" Click="CalculateDateRange_Click" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <fa:ImageAwesome Name="fa_calendar" Icon="CalendarOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="10,1,10,0" />
+                    <TextBlock Text="CALCULATE DATE RANGE" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Text="CURRENT PRINT RANGE" FontWeight="Bold" Margin="0,25,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBox Name="CurrentRange" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" HorizontalContentAlignment="Center" Style="{DynamicResource ModernTextboxStyleWithBorder}" Focusable="False" />
+
+
+            <Button Name="ClearDateRangeButton" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,45,0,5" Height="42" Width="300" Click="ClearDateRange_Click" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <fa:ImageAwesome Name="fa_eraser" Icon="Eraser" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="10,1,10,0" />
+                    <TextBlock Text="CLEAR DATE RANGE" FontSize="18" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,0,0,0" VerticalAlignment="Center" >
+            
+            
+        </StackPanel>
+
+        <!-- COLUMN THREE ############################################################################ -->
+        <StackPanel Name="PrintOptionsPanel" Grid.Row="1" Grid.Column="2" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,10,15,0">
+            <Button Name="CombinedRegister" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Left" Margin="0,20,0,5" Height="42" Width="300" Click="CombinedRegister_Click" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <fa:ImageAwesome Name="fa_link" Icon="Link" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="10,1,10,0" />
+                    <TextBlock Text="PRINT COMBINED REGISTER" FontSize="16" />
+                </StackPanel>
+            </Button>
+            
+            <Button Name="AbsenteeRegister" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Left" Margin="0,10,0,5" Height="42" Width="300" Click="AbsenteeRegister_Click" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <fa:ImageAwesome Name="fa_envelope" Icon="EnvelopeOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="10,1,10,0" />
+                    <TextBlock Text="PRINT ABSENTEE REGISTER" FontSize="16" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="EarlyVotingRegister" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Left" Margin="0,10,0,5" Height="42" Width="300" Click="EarlyVotingRegister_Click" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <fa:ImageAwesome Name="fa_clock" Icon="ClockOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="10,1,10,0" />
+                    <TextBlock Text="PRINT EARLY REGISTER" FontSize="16" />
+                </StackPanel>
+            </Button>
+
+            <Border BorderBrush="Black" BorderThickness="2,2,2,2" Height="2" HorizontalAlignment="Stretch" Margin="0,10,0,0" Visibility="Visible" />
+
+            <Button Name="Preview_CombinedRegister" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Left" Margin="0,20,0,5" Height="42" Width="300" Click="PreviewCombinedRegister_Click" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <fa:ImageAwesome Name="pre_fa_link" Icon="Link" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="10,1,10,0" />
+                    <TextBlock Text="PREVIEW COMBINED REGISTER" FontSize="16" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="Preview_AbsenteeRegister" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Left" Margin="0,10,0,5" Height="42" Width="300" Click="PreviewAbsenteeRegister_Click" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <fa:ImageAwesome Name="pre_fa_envelope" Icon="EnvelopeOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="10,1,10,0" />
+                    <TextBlock Text="PREVIEW ABSENTEE REGISTER" FontSize="16" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="Preview_EarlyVotingRegister" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Left" Margin="0,10,0,5" Height="42" Width="300" Click="PreviewEarlyVotingRegister_Click" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <fa:ImageAwesome Name="pre_fa_clock" Icon="ClockOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="10,1,10,0" />
+                    <TextBlock Text="PREVIEW EARLY REGISTER" FontSize="16" />
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+
+    </Grid>
+</Page>

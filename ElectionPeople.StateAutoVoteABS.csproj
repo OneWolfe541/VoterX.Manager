@@ -1,0 +1,1413 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9056E9B7-9747-4B6D-B61A-D25A54BD9110}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ElectionPeople.StateAutoVoteABS</RootNamespace>
+    <AssemblyName>AutoVote</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\garyc\Documents\Autovote Projects\Deploy\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>12.0.2.4</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\AES.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ElectionPeople.NMStateElection, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\ElectionPeople.NMStateElection.dll</HintPath>
+    </Reference>
+    <Reference Include="ElectionPeople.StateAutoVote.Core">
+      <HintPath>Dependencies\ElectionPeople.StateAutoVote.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ElectionPeople.StateAutoVote.SystemSettings">
+      <HintPath>Dependencies\ElectionPeople.StateAutoVote.SystemSettings.dll</HintPath>
+    </Reference>
+    <Reference Include="ElectionPeople.StateAutoVote.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\ElectionPeople.StateAutoVote.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport">
+      <HintPath>Dependencies\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars">
+      <HintPath>Dependencies\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor">
+      <HintPath>Dependencies\FastReport.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Web">
+      <HintPath>Dependencies\FastReport.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.eSign3, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>Dependencies\Interop.eSign3.dll</HintPath>
+    </Reference>
+    <Reference Include="libpdfNET">
+      <HintPath>Dependencies\libpdfNET.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfPrintNET, Version=4.10.0.0, Culture=neutral, PublicKeyToken=de6610a347b79ec0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\PdfPrintNET.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="RendererNET, Version=4.10.0.0, Culture=neutral, PublicKeyToken=de6610a347b79ec0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\RendererNET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Adapters\JpegMetadataAdapter.cs" />
+    <Compile Include="Converters\TextColorConverter.cs" />
+    <Compile Include="Dialogs\AddressSelectionDialog.xaml.cs">
+      <DependentUpon>AddressSelectionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\BallotRejectedDialog.xaml.cs">
+      <DependentUpon>BallotRejectedDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TextboxDialog.xaml.cs">
+      <DependentUpon>TextboxDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MessageDialog.xaml.cs">
+      <DependentUpon>MessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\OkCancelDialog.xaml.cs">
+      <DependentUpon>OkCancelDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\YesNoDialog.xaml.cs">
+      <DependentUpon>YesNoDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AlertDialog.xaml.cs">
+      <DependentUpon>AlertDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ReportPreviewWindow.xaml.cs">
+      <DependentUpon>ReportPreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ValidationDialog.xaml.cs">
+      <DependentUpon>ValidationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SampleDialog.xaml.cs">
+      <DependentUpon>SampleDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ComboBoxExtensions.cs" />
+    <Compile Include="Extensions\ExcelExtensions.cs" />
+    <Compile Include="Extensions\GridExtensions.cs" />
+    <Compile Include="Extensions\GridPanelExtensions.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\PageExtensions.cs" />
+    <Compile Include="Extensions\StoryboardExtensions.cs" />
+    <Compile Include="Extensions\VoterExtensions.cs" />
+    <Compile Include="Factories\ElectionInfoPanelFactory.cs" />
+    <Compile Include="Factories\AbsenteeBoardReportingFactory.cs" />
+    <Compile Include="Factories\EndOfDayReportingFactory.cs" />
+    <Compile Include="Factories\AbsenteeReportingFactory.cs" />
+    <Compile Include="Global\GlobalReferences.cs" />
+    <Compile Include="Interfaces\IAbsenteeMenuViewModel.cs" />
+    <Compile Include="Interfaces\IAbsenteeReporting.cs" />
+    <Compile Include="Logging\AutoVoteLogger.cs" />
+    <Compile Include="MainAbsenteeWindow.xaml.cs">
+      <DependentUpon>MainAbsenteeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\AbsenteeBoard\AbsenteeBoardMenuView.xaml.cs">
+      <DependentUpon>AbsenteeBoardMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\AbsenteeBoard\AbsenteeBoardMenuViewModel.cs" />
+    <Compile Include="Menus\AbsenteeBoard\AbsenteeBoardVoterDetailsMenuView.xaml.cs">
+      <DependentUpon>AbsenteeBoardVoterDetailsMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\AbsenteeBoard\AbsenteeBoardVoterDetailsMenuViewModel.cs" />
+    <Compile Include="Menus\Absentee\AbsenteeMenuView.xaml.cs">
+      <DependentUpon>AbsenteeMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Absentee\AllMailAbsenteeMenuViewModel.cs" />
+    <Compile Include="Menus\Absentee\AbsenteeMenuViewModel.cs" />
+    <Compile Include="Menus\Manage\AllMailManageMenuViewModel.cs" />
+    <Compile Include="Menus\Manage\ManageMenuView.xaml.cs">
+      <DependentUpon>ManageMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Manage\ManageMenuViewModel.cs" />
+    <Compile Include="Menus\Settings\SettingsMenuView.xaml.cs">
+      <DependentUpon>SettingsMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Settings\SettingsMenuViewModel.cs" />
+    <Compile Include="Menus\Super\SuperDetailsMenuView.xaml.cs">
+      <DependentUpon>SuperDetailsMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Super\SuperSearchMenuView.xaml.cs">
+      <DependentUpon>SuperSearchMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\Super\SuperDetailsMenuViewModel.cs" />
+    <Compile Include="Menus\Super\SuperSearchMenuViewModel.cs" />
+    <Compile Include="Menus\SystemSettingsMenu.xaml.cs">
+      <DependentUpon>SystemSettingsMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\AllMailMenu.xaml.cs">
+      <DependentUpon>AllMailMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\AllMailManageMenu.xaml.cs">
+      <DependentUpon>AllMailManageMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\ManageMenu.xaml.cs">
+      <DependentUpon>ManageMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\AbsenteeMenu.xaml.cs">
+      <DependentUpon>AbsenteeMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\VoterDeletedMenu.xaml.cs">
+      <DependentUpon>VoterDeletedMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\AllMailDetailsMenu.xaml.cs">
+      <DependentUpon>AllMailDetailsMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\VoterDetailsMenuMVVM.xaml.cs">
+      <DependentUpon>VoterDetailsMenuMVVM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\VoterDetailsMenu.xaml.cs">
+      <DependentUpon>VoterDetailsMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\VoterDetails\VoterDetailsMenuView.xaml.cs">
+      <DependentUpon>VoterDetailsMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\VoterDetails\AllMailVoterDetailsMenuViewModel.cs" />
+    <Compile Include="Menus\VoterDetails\VoterDetailsMenuViewModel.cs" />
+    <Compile Include="Models\PaperSizeModel.cs" />
+    <Compile Include="Models\PrinterTrayModel.cs" />
+    <Compile Include="Models\ReportWizardQueryModel.cs" />
+    <Compile Include="Models\VoterHistoryDisplayModel.cs" />
+    <Compile Include="Models\VoterReportModel.cs" />
+    <Compile Include="Reporting\AllMail\BallotsNotMailedReport.cs" />
+    <Compile Include="Reporting\AllMail\DailyDeletedActiveVotersReport.cs" />
+    <Compile Include="Reporting\AllMail\IdRequiredDetailReport.cs" />
+    <Compile Include="Reporting\AllMail\IdRequiredSummaryReport.cs" />
+    <Compile Include="Reporting\AllMail\ReissuedBallotsReport.cs" />
+    <Compile Include="Reporting\AllMail\ReturnedBallotDetailsReport.cs" />
+    <Compile Include="Reporting\DailyDetailByBallotStyleReport.cs" />
+    <Compile Include="Reporting\DailyDetailBySiteReport.cs" />
+    <Compile Include="Reporting\EndOfDayProvisionalReport.cs" />
+    <Compile Include="Reporting\EndOfDaySpoiledReport.cs" />
+    <Compile Include="Reporting\EndOfDayDetailReport.cs" />
+    <Compile Include="Reporting\EndOfDayReport.cs" />
+    <Compile Include="Reporting\EndOfDaySummaryReport.cs" />
+    <Compile Include="Reporting\DailySummaryBySiteReport.cs" />
+    <Compile Include="Reporting\ProvisionalDetailsReport.cs" />
+    <Compile Include="Reporting\RejectedApplicationsReport.cs" />
+    <Compile Include="Reporting\AuditChangesReport.cs" />
+    <Compile Include="Reporting\Rev2020\AbsenteeReportModel\AbsenteeGenericReport.cs" />
+    <Compile Include="Reporting\Rev2020\BatchPrintingMethods\BatchPrintingMethods.cs" />
+    <Compile Include="Reporting\Rev2020\DetailsByBallotStyle\DetailsByBallotStyleMethods.cs" />
+    <Compile Include="Reporting\Rev2020\DetailsByBallotStyle\DetailsByBallotStyleReport.cs" />
+    <Compile Include="Reporting\Rev2020\DetailsBySite\DetailsBySiteMethods.cs" />
+    <Compile Include="Reporting\Rev2020\DetailsBySite\DetailsBySiteReport.cs" />
+    <Compile Include="Reporting\Rev2020\SpoiledBallots\SpoiledBallotsMethods.cs" />
+    <Compile Include="Reporting\Rev2020\SpoiledBallots\SpoiledBallotsReport.cs" />
+    <Compile Include="Reporting\Rev2020\SummaryByBallotStyle\SummaryByBallotStyleMethods.cs" />
+    <Compile Include="Reporting\Rev2020\SummaryByBallotStyle\SummaryByBallotStyleReport.cs" />
+    <Compile Include="Reporting\Rev2020\SummaryBySite\SummaryBySiteMethods.cs" />
+    <Compile Include="Reporting\Rev2020\SummaryBySite\SummaryBySiteReport.cs" />
+    <Compile Include="Reporting\SpoiledBallotDetailsReport.cs" />
+    <Compile Include="Reporting\SummaryByBallotStyleReport.cs" />
+    <Compile Include="Reporting\UnsignedDetailsReport.cs" />
+    <Compile Include="SQLConnectionBuilder\DataBaseTable.cs" />
+    <Compile Include="SQLConnectionBuilder\ISmoTasks.cs" />
+    <Compile Include="SQLConnectionBuilder\MyTestSQLBuilder.cs" />
+    <Compile Include="SQLConnectionBuilder\SmoTasks.cs" />
+    <Compile Include="SQLConnectionBuilder\SQLConnectionString.cs" />
+    <Compile Include="SQLConnectionBuilder\SQLConnectionStringBuilder.cs" />
+    <Compile Include="Static Methods\ApplicationSettings.cs" />
+    <Compile Include="Static Methods\AuditReportMethods.cs" />
+    <Compile Include="Static Methods\BallotPrintingMethods.cs" />
+    <Compile Include="Static Methods\BallotsNotMailedMethods.cs" />
+    <Compile Include="Static Methods\BallotStyleMethods.cs" />
+    <Compile Include="Static Methods\BatchDataMethods.cs" />
+    <Compile Include="Static Methods\ComboBoxMethods.cs" />
+    <Compile Include="Static Methods\ConnectionSetup.cs" />
+    <Compile Include="Static Methods\ElectionMethods.cs" />
+    <Compile Include="Static Methods\EPPlusMethods.cs" />
+    <Compile Include="Static Methods\ExcelMethods.cs" />
+    <Compile Include="Static Methods\ExternalProcessMethods.cs" />
+    <Compile Include="Static Methods\FastReportsMethods.cs" />
+    <Compile Include="Static Methods\IdRequiredReportMethods.cs" />
+    <Compile Include="Static Methods\LogFileMethods.cs" />
+    <Compile Include="Static Methods\MainFrameMethods.cs" />
+    <Compile Include="Static Methods\MainMenuMethods.cs" />
+    <Compile Include="Static Methods\NavigationMethods.cs" />
+    <Compile Include="Static Methods\Navigation\NavigationMenuMethods.cs" />
+    <Compile Include="Static Methods\PartyMethods.cs" />
+    <Compile Include="Static Methods\PDFToolsMethods.cs" />
+    <Compile Include="Static Methods\PollSummaryMethods.cs" />
+    <Compile Include="Static Methods\PollWorkerMethods.cs" />
+    <Compile Include="Static Methods\PrecinctMethods.cs" />
+    <Compile Include="Static Methods\PrinterStatusMethods.cs" />
+    <Compile Include="Static Methods\ReissuedBallotsReportMethods.cs" />
+    <Compile Include="Static Methods\ReportPreviewMethods.cs" />
+    <Compile Include="Static Methods\ReportPrintingMethods.cs" />
+    <Compile Include="Static Methods\ReportSQLMethods.cs" />
+    <Compile Include="Static Methods\ReportSubQueries\ReportViews.cs" />
+    <Compile Include="Static Methods\ReturnedBallotDetailsMethods.cs" />
+    <Compile Include="Static Methods\ServerMethods.cs" />
+    <Compile Include="Static Methods\SignatureMethods.cs" />
+    <Compile Include="Static Methods\SQLConnectionFinder.cs" />
+    <Compile Include="Static Methods\StatusBarMethods.cs" />
+    <Compile Include="Static Methods\VoterDataMethods.cs" />
+    <Compile Include="Static Methods\VoterValidationMethods.cs" />
+    <Compile Include="SystemTray\SystemTray.cs" />
+    <Compile Include="UserControls\UCDemo.xaml.cs">
+      <DependentUpon>UCDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\YesNoQuestionControl.xaml.cs">
+      <DependentUpon>YesNoQuestionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AbsenteeBoard\AbsenteeBoardScanOptionsPage.xaml.cs">
+      <DependentUpon>AbsenteeBoardScanOptionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AbsenteeBoard\AbsenteeBoardScanReturnedEnvelopes.xaml.cs">
+      <DependentUpon>AbsenteeBoardScanReturnedEnvelopes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AbsenteeBoard\AbsenteeBoardVoterSearchPage.xaml.cs">
+      <DependentUpon>AbsenteeBoardVoterSearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AbsenteeBoard\AbsenteeBoardVoterDetailsPage.xaml.cs">
+      <DependentUpon>AbsenteeBoardVoterDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AbsenteeBoard\AbsenteeBoardVoterDetailsViewModel.cs" />
+    <Compile Include="Views\AbsenteeBoard\AbsenteeBoardPage.xaml.cs">
+      <DependentUpon>AbsenteeBoardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AbsenteeBoard\AbsenteeBoardReportsPage.xaml.cs">
+      <DependentUpon>AbsenteeBoardReportsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AbsenteeBoard\AbsenteeBoardReportsViewModel.cs" />
+    <Compile Include="Views\Absentee\AbsenteeBatchManagerPage.xaml.cs">
+      <DependentUpon>AbsenteeBatchManagerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeRejectedBallotsPage.xaml.cs">
+      <DependentUpon>AbsenteeRejectedBallotsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AllMailDetailsPage.xaml.cs">
+      <DependentUpon>AllMailDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeDetailsPage.xaml.cs">
+      <DependentUpon>AbsenteeDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeAdministrationPage.xaml.cs">
+      <DependentUpon>AbsenteeAdministrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeRegisterPage.xaml.cs">
+      <DependentUpon>AbsenteeRegisterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeRejectedApplicationsPage.xaml.cs">
+      <DependentUpon>AbsenteeRejectedApplicationsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeReportWizardDatePage.xaml.cs">
+      <DependentUpon>AbsenteeReportWizardDatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeReportWizardPage.xaml.cs">
+      <DependentUpon>AbsenteeReportWizardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeReportWizardPrintPage.xaml.cs">
+      <DependentUpon>AbsenteeReportWizardPrintPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeScanOptionsPage.xaml.cs">
+      <DependentUpon>AbsenteeScanOptionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeScanReturnedApplications.xaml.cs">
+      <DependentUpon>AbsenteeScanReturnedApplications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeScanReturnedEnvelopes.xaml.cs">
+      <DependentUpon>AbsenteeScanReturnedEnvelopes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeScanReturns.xaml.cs">
+      <DependentUpon>AbsenteeScanReturns.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeTestDeckPage.xaml.cs">
+      <DependentUpon>AbsenteeTestDeckPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\BatchBallotPrintingPage_old.xaml.cs">
+      <DependentUpon>BatchBallotPrintingPage_old.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\BatchBallotPrintingPage.xaml.cs">
+      <DependentUpon>BatchBallotPrintingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\AbsenteeReportPage.xaml.cs">
+      <DependentUpon>AbsenteeReportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\BatchPrinting\BatchPrintingPage.xaml.cs">
+      <DependentUpon>BatchPrintingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\BatchPrinting\BatchPrintingViewModel.cs" />
+    <Compile Include="Views\Absentee\Register\RegisterPage.xaml.cs">
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\Register\RegisterViewModel.cs" />
+    <Compile Include="Views\Absentee\Reports\ReportsPage.xaml.cs">
+      <DependentUpon>ReportsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\Reports\ReportsViewModel.cs" />
+    <Compile Include="Views\Absentee\ReportWizard\ReportWizardDatePage.xaml.cs">
+      <DependentUpon>ReportWizardDatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\ReportWizard\ReportWizardDateViewModel.cs" />
+    <Compile Include="Views\Absentee\ReportWizard\ReportWizardPrintingPage.xaml.cs">
+      <DependentUpon>ReportWizardPrintingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\ReportWizard\ReportWizardPrintingViewModel.cs" />
+    <Compile Include="Views\Absentee\ReportWizard\ReportWizardSelectionsPage.xaml.cs">
+      <DependentUpon>ReportWizardSelectionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\ReportWizard\ReportWizardSelectionsViewModel.cs" />
+    <Compile Include="Views\Absentee\ReturnApplications\ReturnApplicationsPage.xaml.cs">
+      <DependentUpon>ReturnApplicationsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\ReturnApplications\ReturnApplicationViewModel.cs" />
+    <Compile Include="Views\Absentee\ReturnBallots\ReturnBallotsPage.xaml.cs">
+      <DependentUpon>ReturnBallotsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\ReturnBallots\ReturnBallotsViewModel.cs" />
+    <Compile Include="Views\Absentee\VoterDetails\VoterDetailsPage.xaml.cs">
+      <DependentUpon>VoterDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Absentee\VoterDetails\AllMailVoterDetailsViewModel.cs" />
+    <Compile Include="Views\Absentee\VoterDetails\VoterDetailsViewModel.cs" />
+    <Compile Include="Views\Admin\EmergencyBallotPage.xaml.cs">
+      <DependentUpon>EmergencyBallotPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\ManualRecordUpdate.xaml.cs">
+      <DependentUpon>ManualRecordUpdate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\AddProvisionalPage.xaml.cs">
+      <DependentUpon>AddProvisionalPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\EndofDayPage.xaml.cs">
+      <DependentUpon>EndofDayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\ReportsPage.xaml.cs">
+      <DependentUpon>ReportsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\ApplicationSettingsPage.xaml.cs">
+      <DependentUpon>ApplicationSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\SiteVerificationPage.xaml.cs">
+      <DependentUpon>SiteVerificationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\AdministrationPage.xaml.cs">
+      <DependentUpon>AdministrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\EditBallotSearchPage.xaml.cs">
+      <DependentUpon>EditBallotSearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\EditBallotStylePage.xaml.cs">
+      <DependentUpon>EditBallotStylePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\ProvisionalSearchPage.xaml.cs">
+      <DependentUpon>ProvisionalSearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\ReportsMenuPage.xaml.cs">
+      <DependentUpon>ReportsMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\RNDTestingPage.xaml.cs">
+      <DependentUpon>RNDTestingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\ApplicationVerifyPage.xaml.cs">
+      <DependentUpon>ApplicationVerifyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\BallotFinalizePage.xaml.cs">
+      <DependentUpon>BallotFinalizePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\PrintVerifyPage.xaml.cs">
+      <DependentUpon>PrintVerifyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\BallotVerifyPage.xaml.cs">
+      <DependentUpon>BallotVerifyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\PermitVerifyPage.xaml.cs">
+      <DependentUpon>PermitVerifyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\PrintBundlePage.xaml.cs">
+      <DependentUpon>PrintBundlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\PrintVerifyTroubleshootPage_old.xaml.cs">
+      <DependentUpon>PrintVerifyTroubleshootPage_old.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\PrintVerifyTroubleshootPage.xaml.cs">
+      <DependentUpon>PrintVerifyTroubleshootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\ProvisionalBallotPage.xaml.cs">
+      <DependentUpon>ProvisionalBallotPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\ProvisionalVerifyTroubleshootPage.xaml.cs">
+      <DependentUpon>ProvisionalVerifyTroubleshootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\Provisional\ProvisionalBallotPage.xaml.cs">
+      <DependentUpon>ProvisionalBallotPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\Provisional\ProvisionalBallotViewModel.cs" />
+    <Compile Include="Views\Ballots\ReprintBallotPage.xaml.cs">
+      <DependentUpon>ReprintBallotPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\SpoilBallotPage.xaml.cs">
+      <DependentUpon>SpoilBallotPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\SpoiledBallotPage.xaml.cs">
+      <DependentUpon>SpoiledBallotPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\SpoiledBallotVerifyPage.xaml.cs">
+      <DependentUpon>SpoiledBallotVerifyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\SpoiledVerifyTroubleshootPage.xaml.cs">
+      <DependentUpon>SpoiledVerifyTroubleshootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\Spoiled\SpoilOfficialBallotPage.xaml.cs">
+      <DependentUpon>SpoilOfficialBallotPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\Spoiled\SpoilOfficialBallotViewModel.cs" />
+    <Compile Include="Views\Ballots\StubVerifyPage.xaml.cs">
+      <DependentUpon>StubVerifyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ballots\VarifyProvisionalPage.xaml.cs">
+      <DependentUpon>VarifyProvisionalPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login\AbsenteeLoginPage.xaml.cs">
+      <DependentUpon>AbsenteeLoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manage\AddProvisional\AddProvisionalPage.xaml.cs">
+      <DependentUpon>AddProvisionalPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manage\AddProvisional\AddProvisionalViewModel.cs" />
+    <Compile Include="Views\Manage\EditBallotStyle\EditBallotStylesPage.xaml.cs">
+      <DependentUpon>EditBallotStylesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manage\EmergencyBallots\EmergencyBallotsPage.xaml.cs">
+      <DependentUpon>EmergencyBallotsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manage\EmergencyBallots\EmergencyBallotsViewModel.cs" />
+    <Compile Include="Views\Manage\ManualUpdate\ManualUpdatePage.xaml.cs">
+      <DependentUpon>ManualUpdatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manage\ManualUpdate\ManualUpdateViewModel.cs" />
+    <Compile Include="Views\Manage\Reports\DailyReportsPage.xaml.cs">
+      <DependentUpon>DailyReportsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manage\Reports\DailyReportsViewModel.cs" />
+    <Compile Include="Views\Printing\PDFToolsPage.xaml.cs">
+      <DependentUpon>PDFToolsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\FastReports.xaml.cs">
+      <DependentUpon>FastReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\ApplicationPage.xaml.cs">
+      <DependentUpon>ApplicationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\BallotsPage.xaml.cs">
+      <DependentUpon>BallotsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\ElectionPage.xaml.cs">
+      <DependentUpon>ElectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\NetworkPage.xaml.cs">
+      <DependentUpon>NetworkPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\PrintersPage.xaml.cs">
+      <DependentUpon>PrintersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\ServersPage.xaml.cs">
+      <DependentUpon>ServersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\SettingsBasePage.cs" />
+    <Compile Include="Views\Settings\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\AbsenteePage.xaml.cs">
+      <DependentUpon>AbsenteePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\SystemPage.xaml.cs">
+      <DependentUpon>SystemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Signature\SignatureCapturePage.xaml.cs">
+      <DependentUpon>SignatureCapturePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Super\Search\SuperSearchPage.xaml.cs">
+      <DependentUpon>SuperSearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Super\VoterDetails\SuperDetailsPage.xaml.cs">
+      <DependentUpon>SuperDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Super\VoterDetails\SuperDetailsViewModel.cs" />
+    <Compile Include="Views\Testing\CheckBoxTestPage.xaml.cs">
+      <DependentUpon>CheckBoxTestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Testing\UnicodeCharacterTestingPage.xaml.cs">
+      <DependentUpon>UnicodeCharacterTestingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Troubleshooting\Provisional\ProvisionalTroubleShootingPage.xaml.cs">
+      <DependentUpon>ProvisionalTroubleShootingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Troubleshooting\Provisional\ProvisionalTroubleShootingViewModel.cs" />
+    <Compile Include="Views\Troubleshooting\Spoiled\SpoiledTroubleShootingPage.xaml.cs">
+      <DependentUpon>SpoiledTroubleShootingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Troubleshooting\Spoiled\SpoiledTroubleShootingViewModel.cs" />
+    <Compile Include="Views\Voter Validation\VerifyInvalidVoterPage.xaml.cs">
+      <DependentUpon>VerifyInvalidVoterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Voter Validation\VerifyProvisionalBallotPage.xaml.cs">
+      <DependentUpon>VerifyProvisionalBallotPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Voter Validation\VerifySpoiledBallotPage.xaml.cs">
+      <DependentUpon>VerifySpoiledBallotPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Voter Validation\VerifyValidVoterPage.xaml.cs">
+      <DependentUpon>VerifyValidVoterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Voter\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Voter\Search\VoterSearchPage.xaml.cs">
+      <DependentUpon>VoterSearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Voter\ValidationPage.xaml.cs">
+      <DependentUpon>ValidationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Voter\ValidationPage - Card Style.xaml.cs">
+      <DependentUpon>ValidationPage - Card Style.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Dialogs\AddressSelectionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\BallotRejectedDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\TextboxDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\MessageDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\OkCancelDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\YesNoDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\AlertDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\ReportPreviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\ValidationDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\SampleDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainAbsenteeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Menus\AbsenteeBoard\AbsenteeBoardMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\AbsenteeBoard\AbsenteeBoardVoterDetailsMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\Absentee\AbsenteeMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menus\Manage\ManageMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menus\Settings\SettingsMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menus\Super\SuperDetailsMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\Super\SuperSearchMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\SystemSettingsMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\AllMailMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\AllMailManageMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\ManageMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\AbsenteeMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menus\VoterDeletedMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\AllMailDetailsMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\VoterDetailsMenuMVVM.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menus\VoterDetailsMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menus\VoterDetails\VoterDetailsMenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UCDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\YesNoQuestionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AbsenteeBoard\AbsenteeBoardScanOptionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AbsenteeBoard\AbsenteeBoardScanReturnedEnvelopes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AbsenteeBoard\AbsenteeBoardVoterSearchPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AbsenteeBoard\AbsenteeBoardVoterDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AbsenteeBoard\AbsenteeBoardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AbsenteeBoard\AbsenteeBoardReportsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeBatchManagerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeRejectedBallotsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Absentee\AllMailDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeAdministrationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeRegisterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeRejectedApplicationsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeReportWizardDatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeReportWizardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeReportWizardPrintPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeScanOptionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeScanReturnedApplications.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeScanReturnedEnvelopes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeScanReturns.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeTestDeckPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\BatchBallotPrintingPage_old.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Absentee\BatchBallotPrintingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\AbsenteeReportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Absentee\BatchPrinting\BatchPrintingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\Register\RegisterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\Reports\ReportsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\ReportWizard\ReportWizardDatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\ReportWizard\ReportWizardPrintingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\ReportWizard\ReportWizardSelectionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\ReturnApplications\ReturnApplicationsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\ReturnBallots\ReturnBallotsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Absentee\VoterDetails\VoterDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\EmergencyBallotPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Admin\ManualRecordUpdate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Admin\AddProvisionalPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\EndofDayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\ReportsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\ApplicationSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Admin\SiteVerificationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Admin\AdministrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\EditBallotSearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\EditBallotStylePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\ProvisionalSearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\ReportsMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Admin\RNDTestingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\ApplicationVerifyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\BallotFinalizePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\PrintVerifyPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Ballots\BallotVerifyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\PermitVerifyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\PrintBundlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\PrintVerifyTroubleshootPage_old.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Ballots\PrintVerifyTroubleshootPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\ProvisionalBallotPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\ProvisionalVerifyTroubleshootPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\Provisional\ProvisionalBallotPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\ReprintBallotPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\SpoilBallotPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\SpoiledBallotPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\SpoiledBallotVerifyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\SpoiledVerifyTroubleshootPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\Spoiled\SpoilOfficialBallotPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\StubVerifyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ballots\VarifyProvisionalPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Login\AbsenteeLoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Login\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Manage\AddProvisional\AddProvisionalPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Manage\EditBallotStyle\EditBallotStylesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Manage\EmergencyBallots\EmergencyBallotsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Manage\ManualUpdate\ManualUpdatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Manage\Reports\DailyReportsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Printing\PDFToolsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Reports\FastReports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\ApplicationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\BallotsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\ElectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\NetworkPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\PrintersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\ServersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\AbsenteePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\SystemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\UserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Signature\SignatureCapturePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Super\Search\SuperSearchPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Super\VoterDetails\SuperDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Testing\CheckBoxTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Testing\UnicodeCharacterTestingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Troubleshooting\Provisional\ProvisionalTroubleShootingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Troubleshooting\Spoiled\SpoiledTroubleShootingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Voter Validation\VerifyInvalidVoterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Voter Validation\VerifyProvisionalBallotPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Voter Validation\VerifySpoiledBallotPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Voter Validation\VerifyValidVoterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Voter\SearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Voter\Search\VoterSearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Voter\ValidationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Voter\ValidationPage - Card Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="ElectionPeople.StateAutoVoteABS_TemporaryKey.pfx" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Reports\AbsenteeAuditReport.frx" />
+    <None Include="Reports\AbsenteeBallotsNotMailed.frx" />
+    <None Include="Reports\AbsenteeBoardChangeStatus.frx" />
+    <None Include="Reports\AbsenteeBoardExceptionDetails.frx" />
+    <None Include="Reports\AbsenteeBoardLocationDetails.frx" />
+    <None Include="Reports\AbsenteeBoardReturnedBallotList.frx" />
+    <None Include="Reports\AbsenteeBoardSummary.frx" />
+    <None Include="Reports\AbsenteeDeletedActiveVoters.frx" />
+    <None Include="Reports\AbsenteeDetailsByBallotStyle.frx" />
+    <None Include="Reports\AbsenteeDetailsBySite.frx" />
+    <None Include="Reports\AbsenteeIdRequiredBallots.frx" />
+    <None Include="Reports\AbsenteeIdRequiredSummary.frx" />
+    <None Include="Reports\AbsenteeProvisionalBallots.frx" />
+    <None Include="Reports\AbsenteeReissuedReport.frx" />
+    <None Include="Reports\AbsenteeRejectedApplications.frx" />
+    <None Include="Reports\AbsenteeReturnedBallots.frx" />
+    <None Include="Reports\AbsenteeSpecialLabelReport.frx" />
+    <None Include="Reports\AbsenteeSpecialReport.frx" />
+    <None Include="Reports\AbsenteeSpecialSummaryReport.frx" />
+    <None Include="Reports\AbsenteeSpoiledBallots.frx" />
+    <None Include="Reports\AbsenteeSummaryByBallotStyle.frx" />
+    <None Include="Reports\AbsenteeSummaryBySite.frx" />
+    <None Include="Reports\AbsenteeUnsignedEnvelopes.frx" />
+    <None Include="Reports\AddressLabelSingle.frx" />
+    <None Include="Reports\AddressLabelSingleAddress.frx" />
+    <None Include="Reports\AddressLabelSingleBarcode.frx" />
+    <None Include="Reports\Affidavit.frx" />
+    <None Include="Reports\Application.frx" />
+    <None Include="Reports\ApplicationPreprint.frx" />
+    <None Include="Reports\AutoVoteRegister.frx" />
+    <None Include="Reports\BatchPrintingReport.frx" />
+    <None Include="Reports\DailyDetailsBySite.frx" />
+    <None Include="Reports\DailyProvisionalBallots.frx" />
+    <None Include="Reports\DailySpoiledBallots.frx" />
+    <None Include="Reports\DailySummary.frx" />
+    <None Include="Reports\EndOfDayReportED.frx" />
+    <None Include="Reports\EndOfDayReportEV.frx" />
+    <None Include="Reports\ZeroReportEarlyVoting.frx" />
+    <None Include="Reports\ZeroReportElectionDay.frx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AES.ico" />
+    <Resource Include="Images\AESLogo-2016 001 a.png" />
+    <Resource Include="Images\AutoVoteLogo.png" />
+    <Resource Include="Images\favicon-exclamation.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Artboard 1%402x-8.png" />
+    <Resource Include="Images\Artboard 1-8.png" />
+    <Resource Include="Images\Artboard 4%402x-8.png" />
+    <Resource Include="Images\Artboard 4-8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Artboard Outline-8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AES flat-8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AES flat 0.75x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AES flat 0.5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AES.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="PRINTEROCXLib">
+      <Guid>{6B6B85BE-EE85-4D98-B665-9361345B6ACF}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="SHDocVw">
+      <Guid>{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dependencies\ElectionPeople.NMStateElection.dll" />
+    <Content Include="Dependencies\ElectionPeople.StateAutoVote.Core.dll" />
+    <Content Include="Dependencies\ElectionPeople.StateAutoVote.SystemSettings.dll" />
+    <Content Include="Dependencies\ElectionPeople.StateAutoVote.Utilities.dll" />
+    <Content Include="Dependencies\FastReport.Bars.dll" />
+    <Content Include="Dependencies\FastReport.dll" />
+    <Content Include="Dependencies\FastReport.Editor.dll" />
+    <Content Include="Dependencies\FastReport.Web.dll" />
+    <Content Include="Dependencies\FontAwesome.WPF.dll" />
+    <Content Include="Dependencies\Interop.eSign3.dll" />
+    <Content Include="Dependencies\libpdfNET.dll" />
+    <Content Include="Dependencies\netstandard.dll" />
+    <Content Include="Dependencies\Newtonsoft.Json.dll" />
+    <Content Include="Dependencies\PdfPrintAPI.dll" />
+    <Content Include="Dependencies\PdfPrintNET.dll" />
+    <Content Include="Dependencies\RendererNET.dll" />
+    <Content Include="Dependencies\stdole.dll" />
+    <Content Include="Dependencies\System.Windows.Interactivity.dll" />
+    <Resource Include="Images\rejectletter_final.ico" />
+    <Resource Include="Images\rejectmail_final.ico" />
+    <Resource Include="Images\reject1.ico" />
+    <Resource Include="Images\Ambir\Cancel BW.png" />
+    <Resource Include="Images\Ambir\Cancel RGB.png" />
+    <Resource Include="Images\Ambir\Capture Alpha.png" />
+    <Resource Include="Images\Ambir\Capture Delta.png" />
+    <Resource Include="Images\Ambir\Capture Gamma.png" />
+    <Resource Include="Images\Ambir\Capture Omega.png" />
+    <Resource Include="Images\Ambir\Capture Sigma.png" />
+    <Resource Include="Images\Ambir\Capture Zeta.png" />
+    <Resource Include="Images\Ambir\LED Green Delta.png" />
+    <Resource Include="Images\Ambir\LED Green Gamma.png" />
+    <Resource Include="Images\Ambir\LED Green.png" />
+    <Resource Include="Images\Ambir\LED Yellow Delta.png" />
+    <Resource Include="Images\Ambir\LED Yellow Gamma.png" />
+    <Resource Include="Images\Ambir\LED Yellow.png" />
+    <Resource Include="Images\Ambir\OK BW.png" />
+    <Resource Include="Images\Ambir\OK RGB.png" />
+    <Resource Include="Images\Ambir\Pad Alpha.png" />
+    <Resource Include="Images\Ambir\Pad Delta.png" />
+    <Resource Include="Images\Ambir\Pad Gamma.png" />
+    <Resource Include="Images\Ambir\Pad Omega.png" />
+    <Resource Include="Images\Ambir\Pad Sigma.png" />
+    <Resource Include="Images\Ambir\Pad Zeta.png" />
+    <Resource Include="Images\Ambir\Scroll RGB.png" />
+    <Resource Include="Images\Ambir\STPadLibNet_Demo_App.ico" />
+    <Resource Include="Images\Ambir\Welcome.png" />
+    <Resource Include="Images\NM_Seal_wtext.jpg" />
+    <Resource Include="Images\NM_Seal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Manage\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="EPPlus">
+      <Version>4.5.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="FontAwesome.WPF">
+      <Version>4.7.0.9</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Office.Interop.Excel">
+      <Version>15.0.4795.1000</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SqlServer.ConnectionInfo.dll">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Unofficial.Microsoft.SQLServer.SMO">
+      <Version>11.0.3000</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /d/s/i/y "$(ProjectDir)Images"  "$(ProjectDir)bin\$(ConfigurationName)\Images"
+if EXIST "C:\Temp\AutoVote\ReportsRevised2020" (
+xcopy /d/s/i/y "C:\Temp\AutoVote\ReportsRevised2020"  "$(ProjectDir)Reports"
+)
+xcopy /d/s/i/y "$(ProjectDir)Reports"  "$(ProjectDir)bin\$(ConfigurationName)\Reports"
+xcopy /d/s/i/y "$(ProjectDir)Dependencies"  "$(ProjectDir)bin\$(ConfigurationName)"
+rd /s /q "de" "en" "es" "fr" "hu" "it" "ja" "ko" "pr-br" "ro" "pt-br" "ru" "sv" "zh-hans" "zh-hant"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

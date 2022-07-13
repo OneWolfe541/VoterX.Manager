@@ -1,0 +1,112 @@
+﻿<Page x:Class="VoterX.Manager.Views.Absentee.ReportWizardDatePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Manager.Views.Absentee"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      FontSize="{DynamicResource FontSizeLarge}"
+      Loaded="Page_Loaded">
+
+    <Grid Name="PageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <Grid Grid.Column="1" Margin="25,65,120,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="BEGINNING DATE" FontWeight="Bold" Margin="0,0,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+            <StackPanel Name="BeginingDateRangePanel" Grid.Row="1" Grid.Column="0" Margin="20,0,0,0" Orientation="Vertical" Visibility="Visible" >
+                <!--<TextBlock Text="BEGINNING DATE" FontWeight="DemiBold" Margin="0,0,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />-->
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="DATE" Margin="0,0,0,0" VerticalAlignment="Top" Height="32" Width="75" Padding="10,3,10,0" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <DatePicker Width="225" Height="32" Padding="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ModernDatePickerStyle}" 
+                                SelectedDate="{Binding BeginningDate, Mode=TwoWay}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="35,0,0,0" Orientation="Horizontal" >
+                <TextBlock Text="TIME" Margin="0,0,0,0" VerticalAlignment="Top" Height="32" Width="75" Padding="10,3,10,0" Style="{DynamicResource ModernTextBlockLabel}"/>
+                <TextBox Margin="0,0,0,0" Height="32" Width="225" Padding="5,0,5,0" Style="{DynamicResource ModernTextboxStyleWithBorder}" 
+                         Text="{Binding BeginningTime, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Example: 10/7/2018" FontWeight="Bold" Margin="100,0,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="Example: 8:00 AM" FontWeight="Bold" Margin="115,0,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Text="ENDING DATE" FontWeight="Bold" Margin="0,25,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+            <StackPanel Name="EndingDateRangePanel" Grid.Row="4" Grid.Column="0" Margin="20,0,0,0" Orientation="Vertical" Visibility="Visible" >
+                <!--<TextBlock Text="ENDING DATE" FontWeight="DemiBold" Margin="0,0,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />-->
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="DATE" Margin="0,0,0,0" VerticalAlignment="Top" Height="32" Width="75" Padding="10,3,10,0" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <DatePicker Width="225" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ModernDatePickerStyle}"
+                                SelectedDate="{Binding EndingDate, Mode=TwoWay}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4" Grid.Column="1" Margin="35,0,0,0" Orientation="Horizontal" >
+                <TextBlock Text="TIME" Margin="0,0,0,0" VerticalAlignment="Top" Height="32" Width="75" Padding="10,3,10,0" Style="{DynamicResource ModernTextBlockLabel}"/>
+                <TextBox Margin="0,0,0,0" Height="32" Width="225" Padding="5,0,5,0" Style="{DynamicResource ModernTextboxStyleWithBorder}" 
+                         Text="{Binding EndingTime, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <Button Name="CalculateDateRangeButton" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,25,0,5" Height="42" Width="300" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <fa:ImageAwesome Name="fa_calendar" Icon="CalendarOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="10,1,10,0" />
+                    <TextBlock Text="CALCULATE DATE RANGE" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Text="CURRENT PRINT RANGE" FontWeight="Bold" Margin="0,25,0,0" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed" />
+            <TextBox Name="CurrentRange" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" HorizontalContentAlignment="Center" Style="{DynamicResource ModernTextboxStyleWithBorder}" Focusable="False" Visibility="Collapsed" />
+
+
+            <Button Name="ClearDateRangeButton" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,45,0,5" Height="42" Width="300" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" 
+                    Command="{Binding ResetCommand}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <fa:ImageAwesome Name="fa_eraser" Icon="Eraser" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="10,1,10,0" />
+                    <TextBlock Text="RESET DATE RANGE" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+
+            <Button Name="NextWizardButton" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="0,45,0,5" Height="42" Width="150" Padding="5" Foreground="{DynamicResource ApplicationForegroundColor}" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" 
+                    Command="{Binding NextCommand}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <fa:ImageAwesome Name="fa_arrowright" Icon="ArrowRight" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="NEXT" FontSize="18" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+
+        <!-- COLUMN THREE ############################################################################ -->
+
+    </Grid>
+</Page>
